@@ -15,7 +15,7 @@ const Catalogue = () => {
         <Tab.Group>
           <Tab.List className={"catalogue-tabs lg:mb-10 sm:mb-5"}>
             {categories?.map((category) => (
-              <Tab key={category} className={({ selected }) => selected && "catalogue-tab-active"}>
+              <Tab key={category} className={({ selected }: { selected: Boolean }) => (selected && 'catalogue-tab-active')}>
                 {category}
               </Tab>
             ))}

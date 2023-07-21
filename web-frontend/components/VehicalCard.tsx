@@ -8,7 +8,7 @@ import { BsArrowRightShort } from "react-icons/bs";
 
 const VehicalCard = () => {
   return (
-    <figure className='rounded-2xl overflow-clip shadow-lg border border-gray-100'>
+    <figure className='rounded-2xl overflow-clip shadow-lg border'>
       <div className='bg-white p-5 space-y-5'>
         <div className='flex items-center justify-start space-x-3'>
           <div>
@@ -27,15 +27,15 @@ const VehicalCard = () => {
           <div className='flex items-center justify-start space-x-3'>
             <div className='flex lg:flex-row sm:flex-col lg:space-x-2 sm:space-x-0 lg:space-y-0 sm:space-y-2 items-center'>
               <PiSteeringWheelFill size={16} className='fill-green-600' />
-              <span className='text-xs text-gray-600 font-medium'>Automatic</span>
+              <span className='text-xs text-gray-600'>Automatic</span>
             </div>
             <div className='flex lg:flex-row sm:flex-col lg:space-x-2 sm:space-x-0 lg:space-y-0 sm:space-y-2 items-center'>
               <BsFuelPumpFill size={15} className='fill-orange-500' />
-              <span className='text-xs text-gray-600 font-medium'>Petrol</span>
+              <span className='text-xs text-gray-600'>Petrol</span>
             </div>
             <div className='flex lg:flex-row sm:flex-col lg:space-x-2 sm:space-x-0 lg:space-y-0 sm:space-y-2 items-center'>
               <GiCartwheel size={15} className='fill-violet-500' />
-              <span className='text-xs text-gray-600 font-medium'>25/KMPL</span>
+              <span className='text-xs text-gray-600'>25/KMPL</span>
             </div>
           </div>
           <div>
@@ -43,7 +43,7 @@ const VehicalCard = () => {
             </div>
         </div>
       </div>
-      <div className='p-5 bg-gray-100'>
+      <div className='p-5 bg-ascent-dark bg-opacity-5'>
         <div className='flex items-center justify-between'>
           <CustomButton text='Book this now' styles='w-full rounded-lg' textStyles='font-normal text-xs' rightIcon={<BsArrowRightShort size={20} strokeWidth={0.5} />} />
         </div>

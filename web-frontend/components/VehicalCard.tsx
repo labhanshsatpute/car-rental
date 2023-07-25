@@ -51,7 +51,7 @@ const VehicalCard = () => {
         </div>
         <div className='p-5 bg-ascent-dark bg-opacity-5'>
           <div className='flex items-center justify-between'>
-            <CustomButton handleClick={() => setModalState(true)} text='Book this now' styles='w-full rounded-lg' textStyles='text-sm' rightIcon={<BsArrowRightShort size={20} strokeWidth={0.5} />} />
+            <CustomButton handleClick={() => setModalState(true)} text='Check Details' styles='w-full rounded-lg' textStyles='text-sm' rightIcon={<BsArrowRightShort size={20} strokeWidth={0.5} />} />
           </div>
         </div>
       </figure>

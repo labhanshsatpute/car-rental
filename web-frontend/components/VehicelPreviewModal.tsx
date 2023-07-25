@@ -7,7 +7,7 @@ import { LiaTimesCircle } from "react-icons/lia";
 import { GiCartwheel } from "react-icons/gi";
 import { PiSteeringWheelFill } from "react-icons/pi";
 import { BsFuelPumpFill } from "react-icons/bs";
-import { CustomButton } from "@/components";
+import { CustomButton, CustomInput } from "@/components";
 import { BsArrowRightShort } from "react-icons/bs";
 
 interface VehicelPreviewModalProps {
@@ -68,18 +68,18 @@ const VehicelPreviewModal = ({ isOpen, closeModal }: VehicelPreviewModalProps) =
                         </div>
                       </div>
                     </div>
-                    <div className='space-y-3'>
+                    <div className='space-y-4'>
                       <div className='flex items-center justify-start space-x-3'>
                         <div>
-                          <Image src={"/images/porsche.png"} alt='brand-logo' height={80} width={40} className='object-contain' />
+                          <Image src={"/images/porsche.png"} alt='brand-logo' height={60} width={30} className='object-contain' />
                         </div>
                         <div className='space-y-[1px]'>
-                          <h1 className='font-semibold text-base'>Porsche Panamera GT</h1>
+                          <h1 className='font-semibold text-sm'>Porsche Panamera GT</h1>
                           <h1 className='text-[0.7rem] text-gray-500'>2 Seater - Year 2020</h1>
                         </div>
                       </div>
                       <div>
-                        <p className='text-gray-500 text-xs leading-normal'>Lorem ipsum dolor sit amet consectetur adipisicing elit. Autem, molestiae culpa officiis mollitia nesciunt cumque laboriosam repellat atque ut quam necessitatibus, esse iusto sit nobis! Quis tenetur repellendus cum saepe?</p>
+                        <h1 className='font-semibold text-xl text-ascent-dark'>$300.00<span className='text-sm font-normal text-gray-600'>/Hour</span> </h1>
                       </div>
                       <div className='flex items-center space-x-4'>
                         <div className='flex space-x-2 items-center'>
@@ -96,7 +96,14 @@ const VehicelPreviewModal = ({ isOpen, closeModal }: VehicelPreviewModalProps) =
                         </div>
                       </div>
                       <div>
-                        <h1 className='font-semibold text-xl text-ascent-dark'>$300<span className='text-sm font-normal text-gray-600'>/day</span> </h1>
+                        <p className='text-gray-500 text-xs leading-normal'>Lorem ipsum dolor sit amet consectetur adipisicing elit. Autem, molestiae culpa officiis mollitia nesciunt cumque laboriosam repellat atque ut quam necessitatibus, esse iusto sit nobis! Quis tenetur repellendus cum saepe?</p>
+                      </div>
+                      <div className='grid grid-cols-2 gap-4'>
+                        <div className='col-span-2'>
+                          <CustomInput name='pickupLocation' value='' type='text' placeHolder='Enter Pickup Location' label='Pickup Location' required={true} />
+                        </div>
+                        <CustomInput name='pickupDateTime' value='' type='datetime-local' label='Pickup Date & Time' required={true} />
+                        <CustomInput name='dropDateTime' value='' type='datetime-local' label='Drop Date & Time' required={true} />
                       </div>
                       <div>
                       <CustomButton text='Login to book now' styles='w-full rounded-lg' textStyles='text-sm' rightIcon={<BsArrowRightShort size={20} strokeWidth={0.5} />} />

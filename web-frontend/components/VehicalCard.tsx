@@ -45,7 +45,7 @@ const VehicalCard = () => {
               </div>
             </div>
             <div>
-              <h1 className='font-semibold text-xl text-ascent-dark'>$300<span className='text-sm font-normal text-gray-600'>/day</span> </h1>
+              <h1 className='font-semibold text-xl text-ascent-dark'>$300<span className='text-sm font-normal text-gray-600'>/Hour</span> </h1>
             </div>
           </div>
         </div>

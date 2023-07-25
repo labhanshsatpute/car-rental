@@ -9,3 +9,12 @@ export interface CustomButtonProps {
     leftIcon?: JSX.Element;
     rightIcon?: JSX.Element;
 }
+
+export interface CustomInputProps {
+    value: string;
+    placeHolder?: string;
+    required: boolean;
+    name: string;
+    label: string;
+    type: "text" | "number" | "datetime-local" | 'date' | 'time';
+}

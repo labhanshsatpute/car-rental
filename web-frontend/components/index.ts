@@ -4,6 +4,7 @@ import Intro from "./HomeSections/Intro";
 import Catalogue from "./HomeSections/Catalogue";
 import VehicalCard from "./VehicalCard";
 import VehicelPreviewModal from "./VehicelPreviewModal";
+import CustomInput from "./CustomInput";
 
 export {
     Header,
@@ -11,5 +12,6 @@ export {
     Intro,
     Catalogue,
     VehicalCard,
-    VehicelPreviewModal
+    VehicelPreviewModal,
+    CustomInput
 }

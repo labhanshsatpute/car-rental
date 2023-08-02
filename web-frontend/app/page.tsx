@@ -1,4 +1,4 @@
-import { Catalogue, Intro } from '@/components'
+import { Catalogue, Features, Intro } from '@/components'
 import React from 'react'
 
 
@@ -8,6 +8,7 @@ export default function Home() {
     <React.Fragment>
       <Intro />
       <Catalogue/>
+      <Features />
     </React.Fragment>
   )
 }

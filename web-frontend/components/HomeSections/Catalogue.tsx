@@ -3,6 +3,10 @@
 import React from 'react'
 import { Tab } from '@headlessui/react'
 import { VehicalCard } from '@/components';
+import { Poppins } from 'next/font/google'
+
+const poppins = Poppins({ weight: '600', subsets: ['latin-ext'] })
+
 
 const Catalogue = () => {
 
@@ -10,7 +14,12 @@ const Catalogue = () => {
 
   return (
     <section className='relative'>
-      <div className='container py-10'>
+      <div className='container py-10 space-y-7'>
+
+        <div className='text-center lg:w-6/12 sm:w-full mx-auto space-y-2'>
+          <h1 className={`font-bold text-3xl leading-snug text-ascent-dark ${poppins.className}`}>Get the best car for your trip</h1>
+          <p className='text-xs text-gray-500 leading-normal'>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Enim impedit esse rerum exercitationem.</p>
+        </div>
 
         <Tab.Group>
           <Tab.List className={"catalogue-tabs lg:mb-10 sm:mb-5"}>

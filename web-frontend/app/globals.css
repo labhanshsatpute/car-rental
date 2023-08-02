@@ -23,7 +23,7 @@
     @apply p-2 bg-ascent bg-opacity-5 w-fit rounded-lg space-x-2 mx-auto
 }
 .catalogue-tabs button {
-    @apply bg-ascent-dark bg-opacity-10 py-2 px-4 rounded-md font-medium text-sm min-w-[100px] text-ascent-dark border-none outline-none
+    @apply bg-ascent-dark bg-opacity-10 py-2 px-4 rounded-md font-medium text-sm lg:min-w-[100px] sm:min-h-fit text-ascent-dark border-none outline-none
 }
 .catalogue-tabs button.catalogue-tab-active {
     @apply text-white bg-ascent bg-opacity-100

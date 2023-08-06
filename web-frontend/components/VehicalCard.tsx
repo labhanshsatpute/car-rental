@@ -14,7 +14,7 @@ const VehicalCard = () => {
 
   return (
     <React.Fragment>
-      <figure className='rounded-2xl overflow-clip shadow-lg border'>
+      <figure className='rounded-2xl overflow-clip shadow-[0px_0px_25px_rgba(0,0,0,0.2)]'>
         <div className='bg-white p-5 space-y-5'>
           <div className='flex items-center justify-start space-x-3'>
             <div>
@@ -45,7 +45,11 @@ const VehicalCard = () => {
               </div>
             </div>
             <div>
-              <h1 className='font-semibold text-xl text-ascent-dark'>$300<span className='text-sm font-normal text-gray-600'>/Hour</span> </h1>
+              <h1>
+              <span className='font-semibold text-lg text-ascent-dark'>{process.env.NEXT_PUBLIC_APP_CURRENCY}300</span>
+              <span className='text-left text-gray-800'>/</span>
+              <span className='text-sm font-medium text-gray-800'>Hour</span> 
+              </h1>
             </div>
           </div>
         </div>

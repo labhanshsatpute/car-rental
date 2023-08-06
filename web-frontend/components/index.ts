@@ -6,7 +6,7 @@ import VehicalCard from "./VehicalCard";
 import VehicelPreviewModal from "./VehicelPreviewModal";
 import CustomInput from "./CustomInput";
 import Features from "./HomeSections/Features";
-
+import Footer from "./Footer";
 
 export {
     Header,
@@ -16,5 +16,6 @@ export {
     VehicalCard,
     VehicelPreviewModal,
     CustomInput,
-    Features
+    Features,
+    Footer
 }

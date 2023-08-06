@@ -31,7 +31,7 @@ const Catalogue = () => {
           </Tab.List>
           <Tab.Panels>
             <Tab.Panel>
-              <div className='grid lg:grid-cols-3 sm:grid-cols-1 gap-7'>
+              <div className='grid lg:grid-cols-3 md:grid-cols-2 sm:grid-cols-1 gap-7'>
                 <VehicalCard />
                 <VehicalCard />
                 <VehicalCard />

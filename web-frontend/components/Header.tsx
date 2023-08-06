@@ -6,6 +6,7 @@ import { CustomButton } from '@/components';
 import { AiFillCar } from "react-icons/ai";
 import { Transition } from '@headlessui/react';
 import { FiMenu } from "react-icons/fi";
+import Image from 'next/image';
 
 const Header = () => {
 
@@ -13,13 +14,11 @@ const Header = () => {
 
   return (
     <header>
-      <nav className='container md:block sm:hidden py-5'>
+      <nav className='container md:block sm:hidden py-6'>
         <div className='flex items-center justify-between'>
 
-          <Link href={"/"} className='font-semibold text-2xl flex items-center'>
-            <AiFillCar size={30} className='fill-ascent-dark mr-1' />
-            <span className='text-ascent'>Cars</span>
-            <span className='text-ascent-dark'>Hub</span>
+          <Link href={"/"}>
+            <Image src={"/images/logo.png"} alt='carshub-logo' height={50} width={160} />
           </Link>
 
           <div>

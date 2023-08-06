@@ -28,3 +28,9 @@
 .catalogue-tabs button.catalogue-tab-active {
     @apply text-white bg-ascent bg-opacity-100
 }
+.footer-heading {
+    @apply font-semibold text-xl text-black
+}
+.footer-link {
+    @apply text-sm text-gray-500 hover:text-ascent transition duration-300 ease-in-out hover:ease-in-out
+}

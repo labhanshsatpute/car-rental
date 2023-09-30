@@ -1,7 +1,7 @@
 import React from 'react'
 import { Poppins } from 'next/font/google'
 import Link from 'next/link';
-import CustomButton from './CustomButton';
+import CustomButton from '../FormControls/CustomButton';
 import { FaStar } from "react-icons/fa";
 import { FcGoogle } from "react-icons/fc";
 import Image from 'next/image';

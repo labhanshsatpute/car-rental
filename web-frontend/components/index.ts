@@ -1,12 +1,13 @@
-import CustomButton from "./CustomButton";
-import Header from "./Header";
+import CustomButton from "./FormControls/CustomButton";
+import Header from "./Layouts/Header";
 import Intro from "./HomeSections/Intro";
 import Catalogue from "./HomeSections/Catalogue";
-import VehicalCard from "./VehicalCard";
-import VehicelPreviewModal from "./VehicelPreviewModal";
-import CustomInput from "./CustomInput";
+import VehicalCard from "./VehicalCard/VehicalCard";
+import VehicelPreviewModal from "./VehicalCard/VehicelPreviewModal";
+import CustomInput from "./FormControls/CustomInput";
 import Features from "./HomeSections/Features";
-import Footer from "./Footer";
+import Footer from "./Layouts/Footer";
+import LoginModal from './Authentication/LoginModal';
 
 export {
     Header,
@@ -17,5 +18,6 @@ export {
     VehicelPreviewModal,
     CustomInput,
     Features,
-    Footer
+    Footer,
+    LoginModal
 }

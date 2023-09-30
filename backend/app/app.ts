@@ -3,7 +3,7 @@ import express from "express";
 import cors from "cors";
 import dbConnection from "../config/database";
 
-dotenv.config({ path: __dirname + '/.env' });
+dotenv.config();
 
 const port: number = 8000;
 

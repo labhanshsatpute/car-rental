@@ -16,5 +16,5 @@ export interface CustomInputProps {
     required: boolean;
     name: string;
     label: string;
-    type: "text" | "number" | "datetime-local" | 'date' | 'time';
+    type: "text" | "number" | "datetime-local" | 'date' | 'time' | 'email' | 'password';
 }

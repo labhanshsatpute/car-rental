@@ -3,16 +3,10 @@ import mongoose from 'mongoose';
 const dbConnection = () => {
     try {
 
-        const connectionUrl: string = process.env.APP_MONGODB_URL!;
-
-        const connectionParams: Object = {
+        mongoose.connect(process.env.APP_MONGODB_URL as string, {
             useNewUrlParser: true,
             useUnifiedTopology: true,
-            useCreateIndex: true,
-            useFindAndModify: false,
-        };
-
-        mongoose.connect(connectionUrl, connectionParams);
+        } as object);
         console.log('Database successfully connected');
         
     } catch (error) {

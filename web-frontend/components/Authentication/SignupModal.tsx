@@ -45,7 +45,7 @@ const SignupModal = ({ isOpen, closeModal }: SignupModalProps) => {
                 leave='ease-in-out duration-300'
                 leaveFrom='opacity-100 scale-100'
                 leaveTo='opacity-0 scale-90'>
-                <Dialog.Panel className={"relative lg:w-[400px] sm:w-full bg-white max-w-lg max-h-[90vh] overflow-y-auto transform rounded-xl shadow-[0px_0px_50px_rgba(0,0,0,0.4)] flex flex-col gap-10 lg:px-12 lg:py-14 sm:px-10 sm:py-12 text-left"} ref={focusRef}>
+                <Dialog.Panel className={"relative w-full bg-white max-w-lg max-h-[90vh] overflow-y-auto transform rounded-xl shadow-[0px_0px_50px_rgba(0,0,0,0.4)] flex flex-col gap-10 lg:px-12 lg:py-14 sm:px-10 sm:py-12 text-left"} ref={focusRef}>
                   <div className='lg:space-y- sm:space-y-4'>
                     <div className='space-y-5'>
                       <div className='text-center space-y-1 py-2'>

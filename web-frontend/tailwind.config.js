@@ -31,7 +31,7 @@ module.exports = {
         "dominant": "#FFF",
         "complement": "#F4F4F4",
         "ascent": "#fe5b3e",
-        "ascent-dark": "#474fa1",
+        "ascent-dark": "#292f71",
       },
     },
   },

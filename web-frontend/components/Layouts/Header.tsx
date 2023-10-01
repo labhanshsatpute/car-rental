@@ -11,7 +11,7 @@ import Image from 'next/image';
 
 const Header = () => {
 
-  const [loginModalState, setLoginModalState] = useState(true);
+  const [loginModalState, setLoginModalState] = useState(false);
 
   const [signupModalState, setSignupModalState] = useState(false);
 

@@ -8,6 +8,7 @@ import CustomInput from "./FormControls/CustomInput";
 import Features from "./HomeSections/Features";
 import Footer from "./Layouts/Footer";
 import LoginModal from './Authentication/LoginModal';
+import SignupModal from './Authentication/SignupModal';
 
 export {
     Header,
@@ -19,5 +20,6 @@ export {
     CustomInput,
     Features,
     Footer,
-    LoginModal
+    LoginModal,
+    SignupModal
 }

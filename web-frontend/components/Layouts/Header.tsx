@@ -2,7 +2,7 @@
 
 import Link from 'next/link'
 import React, { Fragment, useState } from 'react'
-import { CustomButton, LoginModal } from '@/components';
+import { CustomButton, LoginModal, SignupModal } from '@/components';
 import { AiFillCar } from "react-icons/ai";
 import { Transition } from '@headlessui/react';
 import { FiMenu } from "react-icons/fi";
@@ -12,6 +12,8 @@ import Image from 'next/image';
 const Header = () => {
 
   const [loginModalState, setLoginModalState] = useState(true);
+
+  const [signupModalState, setSignupModalState] = useState(false);
 
   const [mobileMenu, setMobileMenu] = useState(false);
 
@@ -35,7 +37,7 @@ const Header = () => {
             </div>
 
             <div className='flex items-center space-x-8'>
-              <Link href={"/"} className='nav-link text-sm font-medium'>Sign up</Link>
+              <button onClick={() => setSignupModalState(true)} className='nav-link text-sm font-medium'>Sign up</button>
               <CustomButton text='Sign In' handleClick={() => setLoginModalState(true)} />
             </div>
 
@@ -58,7 +60,7 @@ const Header = () => {
               </div>
 
               <div className='flex items-center space-x-4'>
-                <Link href={"/"} className='nav-link text-sm font-medium'>Sign up</Link>
+                <button onClick={() => setSignupModalState(true)} className='nav-link text-sm font-medium'>Sign up</button>
                 <CustomButton text='Sign In' handleClick={() => setLoginModalState(true)} />
               </div>
 
@@ -79,6 +81,9 @@ const Header = () => {
       </header>
 
       <LoginModal isOpen={loginModalState} closeModal={() => setLoginModalState(false)} />
+
+      <SignupModal isOpen={signupModalState} closeModal={() => setSignupModalState(false)} />
+      
     </React.Fragment>
   )
 }

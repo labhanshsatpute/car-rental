@@ -1,19 +1,18 @@
 "use client";
 
-import React, { Fragment, useRef, useState } from 'react'
+import React, { Fragment, useRef } from 'react'
 import { Dialog, Transition } from '@headlessui/react';
 import { LiaTimesSolid } from "react-icons/lia";
-import { CustomInput, CustomButton, SignupModal } from '@/components';
+import { CustomInput, CustomButton } from '@/components';
 import { BsArrowRightShort } from "react-icons/bs";
 import { FcGoogle } from "react-icons/fc";
 
-
-interface LoginModalProps {
+interface SignupModalProps {
   isOpen: boolean;
   closeModal: () => void;
 }
 
-const LoginModal = ({ isOpen, closeModal }: LoginModalProps) => {
+const SignupModal = ({ isOpen, closeModal }: SignupModalProps) => {
 
   const focusRef = useRef(null);
 
@@ -46,20 +45,20 @@ const LoginModal = ({ isOpen, closeModal }: LoginModalProps) => {
                 leave='ease-in-out duration-300'
                 leaveFrom='opacity-100 scale-100'
                 leaveTo='opacity-0 scale-90'>
-                <Dialog.Panel className={"relative lg:w-[400px] sm:w-full bg-white max-w-lg max-h-[90vh] overflow-y-auto transform rounded-xl shadow-[0px_0px_50px_rgba(0,0,0,0.4)] flex flex-col gap-10 lg:px-12 lg:py-14 sm:px-10 sm:py-12 text-left"}>
-                  <div className='lg:space-y- sm:space-y-4' ref={focusRef}>
+                <Dialog.Panel className={"relative lg:w-[400px] sm:w-full bg-white max-w-lg max-h-[90vh] overflow-y-auto transform rounded-xl shadow-[0px_0px_50px_rgba(0,0,0,0.4)] flex flex-col gap-10 lg:px-12 lg:py-14 sm:px-10 sm:py-12 text-left"} ref={focusRef}>
+                  <div className='lg:space-y- sm:space-y-4'>
                     <div className='space-y-5'>
                       <div className='text-center space-y-1 py-2'>
-                        <h1 className='text-2xl font-semibold text-ascent-dark'>Welcome Back!</h1>
-                        <p className='text-xs text-gray-600'>Enter your credentials to continue</p>
+                        <h1 className='text-2xl font-semibold text-ascent-dark'>Create an Account</h1>
+                        <p className='text-xs text-gray-600'>Cnter the required fields to create account</p>
                       </div>
                       <div className='space-y-3'>
-                          <CustomInput name='email' value='' type='email' placeHolder='Enter Email Address' label='Email Address' required={true} />
-                          <CustomInput name='password' value='' type='password' placeHolder='Enter Passsword' label='Password' required={true} />
-                          <div className='text-right'>
-                            <a href="#" className='text-xs font-medium text-gray-500 hover:text-ascent transition duration-300 ease-in-out hover:ease-in-out'>Forgot Password?</a>
-                          </div>
-                          <CustomButton text='Submit' styles='w-full rounded-lg' textStyles='text-sm' rightIcon={<BsArrowRightShort size={20} strokeWidth={0.5} />} />
+                        <CustomInput name='name' value='' type='text' placeHolder='Enter Name' label='Your Name' required={true} />
+                        <CustomInput name='email' value='' type='email' placeHolder='Enter Email Address' label='Email Address' required={true} />
+                        <CustomInput name='password' value='' type='password' placeHolder='Enter Passsword' label='Password' required={true} />
+                        <CustomInput name='confirmPassword' value='' type='password' placeHolder='Repeat Passsword' label='Confirm Password' required={true} />
+                        <div></div>
+                        <CustomButton text='Submit' styles='w-full rounded-lg' textStyles='text-sm' rightIcon={<BsArrowRightShort size={20} strokeWidth={0.5} />} />
                       </div>
                       <div className='flex space-x-4 items-center justify-center'>
                         <hr className='w-1/3' />
@@ -84,4 +83,4 @@ const LoginModal = ({ isOpen, closeModal }: LoginModalProps) => {
   )
 }
 
-export default LoginModal
+export default SignupModal

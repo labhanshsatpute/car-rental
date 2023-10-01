@@ -14,7 +14,7 @@ const VehicalCard = () => {
 
   return (
     <React.Fragment>
-      <figure className='rounded-2xl overflow-clip shadow-[0px_0px_25px_rgba(0,0,0,0.2)]'>
+      <figure className='rounded-lg overflow-clip shadow-[0px_0px_25px_rgba(0,0,0,0.2)]'>
         <div className='bg-white p-5 space-y-5'>
           <div className='flex items-center justify-start space-x-3'>
             <div>

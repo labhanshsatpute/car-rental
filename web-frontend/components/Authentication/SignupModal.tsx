@@ -57,7 +57,12 @@ const SignupModal = ({ isOpen, closeModal }: SignupModalProps) => {
                         <CustomInput name='email' value='' type='email' placeHolder='Enter Email Address' label='Email Address' required={true} />
                         <CustomInput name='password' value='' type='password' placeHolder='Enter Passsword' label='Password' required={true} />
                         <CustomInput name='confirmPassword' value='' type='password' placeHolder='Repeat Passsword' label='Confirm Password' required={true} />
-                        <div></div>
+                        <div>
+                          <div className='flex items-center justify-start space-x-2'>
+                            <input type="checkbox" name='termConditions' />
+                            <label htmlFor="termConditions" className='font-medium text-xs'>I accept terms & conditions</label>
+                          </div>
+                        </div>
                         <CustomButton text='Submit' styles='w-full rounded-lg' textStyles='text-sm' rightIcon={<BsArrowRightShort size={20} strokeWidth={0.5} />} />
                       </div>
                       <div className='flex space-x-4 items-center justify-center'>

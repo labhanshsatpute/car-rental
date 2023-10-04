@@ -30,7 +30,7 @@ const VehicelPreviewModal = ({ isOpen, closeModal }: VehicelPreviewModalProps) =
             leave='ease-in-out duration-300'
             leaveFrom='opacity-100'
             leaveTo='opacity-0'>
-            <div className='fixed inset-0 bg-black bg-opacity-25' />
+            <div className='fixed inset-0 bg-black bg-opacity-30' />
           </Transition.Child>
 
           <div className='fixed inset-0 overflow-y-auto'>
@@ -45,7 +45,7 @@ const VehicelPreviewModal = ({ isOpen, closeModal }: VehicelPreviewModalProps) =
                 leave='ease-in-out duration-300'
                 leaveFrom='opacity-100 scale-100'
                 leaveTo='opacity-0 scale-90'>
-                <Dialog.Panel className={"relative w-full bg-white max-w-lg max-h-[90vh] overflow-y-auto transform rounded-lg shadow-[0px_0px_50px_rgba(0,0,0,0.4)] flex flex-col gap-10 lg:p-7 sm:p-5 text-left"}>
+                <Dialog.Panel className={"relative w-full bg-white max-w-2xl max-h-[90vh] overflow-y-auto transform rounded-lg shadow-[0px_0px_50px_rgba(0,0,0,0.4)] flex flex-col gap-10 lg:p-7 sm:p-5 text-left"}>
                   <div className='absolute top-3 right-3'>
                     <button className='p-1 bg-gray-200 rounded-full' onClick={closeModal}>
                       <LiaTimesCircle size={25} className='fill-gray-500' />

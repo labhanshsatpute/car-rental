@@ -1,13 +1,13 @@
 import * as dotenv from 'dotenv';
 import express from "express";
-import cors from "cors";
 import dbConnection from "../config/database";
+import cors from 'cors';
 
 dotenv.config();
 
 const port: number = 8000;
 
-const app: express.Application = express();
+const app = express();
 
 app.use(express.json());
 app.use(express.urlencoded());

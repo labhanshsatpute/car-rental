@@ -1,11 +1,5 @@
 import mongoose, { Schema } from "mongoose";
 
-enum Device {
-    WEB = 'WEB',
-    ANDROID = 'ANDROID',
-    IOS = 'IOS'
-}
-
 const userAccessTokenSchema: Schema = new mongoose.Schema({
     userId: {
         type: mongoose.Schema.Types.ObjectId,
@@ -16,13 +10,11 @@ const userAccessTokenSchema: Schema = new mongoose.Schema({
         type: String,
         required: true,
     },
-    device: {
+    ipAddress: {
         type: String,
-        enum: Object.values(Device)
     },
     operatingSystem: {
         type: String,
-        required: true,
     },
     expiresAt: {
         type: Date,

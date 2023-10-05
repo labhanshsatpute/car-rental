@@ -35,10 +35,12 @@ const userSchema: Schema = new mongoose.Schema({
     },
     phone: {
         type: String,
+        default: null
     },
     gender: {
         type: String,
-        enum: Object.values(Gender)
+        enum: Object.values(Gender),
+        default: null
     },
     password: {
         type: String,
@@ -46,18 +48,23 @@ const userSchema: Schema = new mongoose.Schema({
     },
     profileImage: {
         type: String,
+        default: null
     },
     googleId: {
         type: String,
+        default: null
     },
     passwordUpdatedAt: {
-        type: Date
+        type: Date,
+        default: null
     },
     emailVerifiedAt: {
-        type: Date
+        type: Date,
+        default: null
     },
     phoneVerifiedAt: {
-        type: Date
+        type: Date,
+        default: null
     },
     status: {
         type: Boolean,

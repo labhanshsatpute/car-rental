@@ -77,9 +77,8 @@ const adminSchema: Schema = new mongoose.Schema({
     }
 }, { timestamps: true });
 
-adminSchema.methods.generateAuthToken = () => {
-    const admin = this as Admin
-    const token = jwt.sign({ _id: this._id }, process.env.JWT_PRIVATE_KET as string, { expiresIn: '1d' });
+adminSchema.methods.generateAuthToken = (id: String) => {
+    const token = jwt.sign({ _id: id }, process.env.JWT_PRIVATE_KET as string, { expiresIn: '1d' });
     return token;
 }
 

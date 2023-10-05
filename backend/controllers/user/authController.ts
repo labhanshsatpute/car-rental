@@ -21,7 +21,7 @@ class AuthController {
             const { error } = data.validate(req.body);
 
             if (error) {
-                return res.status(400).send({
+                return res.status(200).send({
                     status: false,
                     message: error.details[0].message,
                     data: error.details
@@ -30,7 +30,7 @@ class AuthController {
 
             const isEmailExists = await User.findOne({ email: req.body.email });
             if (isEmailExists) {
-                return res.status(400).send({
+                return res.status(200).send({
                     status: false,
                     message: "Email already in exists",
                     data: null
@@ -81,7 +81,7 @@ class AuthController {
 
             const { error } = data.validate(req.body);
             if (error) {
-                return res.status(400).send({
+                return res.status(200).send({
                     status: false,
                     message: error.details[0].message,
                     data: error.details
@@ -90,7 +90,7 @@ class AuthController {
 
             const user = await User.findOne({ email: req.body.email });
             if (!user) {
-                return res.status(400).send({
+                return res.status(200).send({
                     status: false,
                     message: "Email does not exists",
                     data: null
@@ -99,7 +99,7 @@ class AuthController {
 
             const verifyPassword = await bcrypt.compare(req.body.password, user.password);
             if (!verifyPassword) {
-                return res.status(400).send({
+                return res.status(200).send({
                     status: false,
                     message: "Invalid password",
                     data: null

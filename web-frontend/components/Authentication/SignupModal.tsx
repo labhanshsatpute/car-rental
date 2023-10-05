@@ -1,11 +1,12 @@
 "use client";
 
-import React, { Fragment, useRef } from 'react'
+import React, { Fragment, useRef, useState } from 'react'
 import { Dialog, Transition } from '@headlessui/react';
 import { LiaTimesSolid } from "react-icons/lia";
 import { CustomInput, CustomButton } from '@/components';
 import { BsArrowRightShort } from "react-icons/bs";
 import { FcGoogle } from "react-icons/fc";
+import { handleRegister } from '../../services/authentication';
 
 interface SignupModalProps {
   isOpen: boolean;
@@ -13,6 +14,32 @@ interface SignupModalProps {
 }
 
 const SignupModal = ({ isOpen, closeModal }: SignupModalProps) => {
+
+  const [errorMessage, setErrorMessage] = useState(null);
+
+  const [inputFields, setInpuFields] = useState({
+    name: '',
+    email: '',
+    password: '',
+    confirmPassword: ''
+  });
+
+  const handleInputChange = (event: any) => {
+    const { name, value } = event.target;
+    setInpuFields({ ...inputFields, [name]: value });
+  }
+
+  const handleFormSubmit = async (event: any) => {
+    event.preventDefault();
+    setErrorMessage(null);
+    const result = await handleRegister(inputFields);
+    if (result.status) {
+      console.log(result.data);
+    }
+    else {
+      setErrorMessage(result.message);
+    }
+  }
 
   const focusRef = useRef(null);
 
@@ -46,17 +73,20 @@ const SignupModal = ({ isOpen, closeModal }: SignupModalProps) => {
                 leaveFrom='opacity-100 scale-100'
                 leaveTo='opacity-0 scale-90'>
                 <Dialog.Panel className={"relative w-full bg-white max-w-xl max-h-[90vh] overflow-y-auto transform rounded-xl shadow-[0px_0px_50px_rgba(0,0,0,0.4)] flex flex-col gap-10 lg:px-12 lg:py-14 sm:px-10 sm:py-12 text-left"} ref={focusRef}>
-                  <div className='lg:space-y- sm:space-y-4'>
+                  <form className='lg:space-y- sm:space-y-4' onSubmit={(event) => handleFormSubmit(event)}>
                     <div className='space-y-5'>
                       <div className='text-center space-y-1 py-2'>
                         <h1 className='text-2xl font-semibold text-ascent-dark'>Create an Account</h1>
                         <p className='text-xs text-gray-600'>Cnter the required fields to create account</p>
                       </div>
+                      { errorMessage && <div className='text-center'>
+                        <p className='text-red-500 font-medium text-sm'>{errorMessage}</p>
+                      </div>}
                       <div className='space-y-3'>
-                        <CustomInput name='name' value='' type='text' placeHolder='Enter Name' label='Your Name' required={true} />
-                        <CustomInput name='email' value='' type='email' placeHolder='Enter Email Address' label='Email Address' required={true} />
-                        <CustomInput name='password' value='' type='password' placeHolder='Enter Passsword' label='Password' required={true} />
-                        <CustomInput name='confirmPassword' value='' type='password' placeHolder='Repeat Passsword' label='Confirm Password' required={true} />
+                        <CustomInput name='name' value={inputFields.name} type='text' placeHolder='Enter Name' handleChange={(event) => handleInputChange(event)} label='Your Name' required={true} />
+                        <CustomInput name='email' value={inputFields.email} type='email' placeHolder='Enter Email Address' handleChange={(event) => handleInputChange(event)} label='Email Address' required={true} />
+                        <CustomInput name='password' value={inputFields.password} type='password' placeHolder='Enter Passsword' handleChange={(event) => handleInputChange(event)} label='Password' required={true} />
+                        <CustomInput name='confirmPassword' value={inputFields.confirmPassword} type='password' placeHolder='Repeat Passsword' handleChange={(event) => handleInputChange(event)} label='Confirm Password' required={true} />
                         <div>
                           <div className='flex items-center justify-start space-x-2'>
                             <input type="checkbox" name='termConditions' />
@@ -71,10 +101,10 @@ const SignupModal = ({ isOpen, closeModal }: SignupModalProps) => {
                         <hr className='w-1/3' />
                       </div>
                       <div>
-                        <CustomButton text='Continue with Google' styles='w-full bg-white border rounded-lg group hover:bg-slate-100' textStyles='text-sm text-ascent-dark' rightIcon={<FcGoogle size={20} strokeWidth={0.5} className='ml-1' />} />
+                        <CustomButton type='submit' text='Continue with Google' styles='w-full bg-white border rounded-lg group hover:bg-slate-100' textStyles='text-sm text-ascent-dark' rightIcon={<FcGoogle size={20} strokeWidth={0.5} className='ml-1' />} />
                       </div>
                     </div>
-                  </div>
+                  </form>
                 </Dialog.Panel>
               </Transition.Child>
               {/* Modal Dialog */}

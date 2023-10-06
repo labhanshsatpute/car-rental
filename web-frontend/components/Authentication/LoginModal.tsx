@@ -6,7 +6,8 @@ import { LiaTimesSolid } from "react-icons/lia";
 import { CustomInput, CustomButton, SignupModal } from '@/components';
 import { BsArrowRightShort } from "react-icons/bs";
 import { FcGoogle } from "react-icons/fc";
-
+import { signInWithPopup } from 'firebase/auth';
+import { auth, provider } from '@/services/firebase';
 
 interface LoginModalProps {
   isOpen: boolean;
@@ -14,6 +15,12 @@ interface LoginModalProps {
 }
 
 const LoginModal = ({ isOpen, closeModal }: LoginModalProps) => {
+  
+  const handleGoogleSignup = () => {
+    signInWithPopup(auth, provider).then((data) => {
+      console.log(data);
+    })
+  }
 
   const focusRef = useRef(null);
 
@@ -67,7 +74,7 @@ const LoginModal = ({ isOpen, closeModal }: LoginModalProps) => {
                         <hr className='w-1/3' />
                       </div>
                       <div>
-                        <CustomButton text='Continue with Google' styles='w-full bg-white border rounded-lg group hover:bg-slate-100' textStyles='text-sm text-ascent-dark' rightIcon={<FcGoogle size={20} strokeWidth={0.5} className='ml-1' />} />
+                        <CustomButton type='button' handleClick={() => handleGoogleSignup()} text='Continue with Google' styles='w-full bg-white border rounded-lg group hover:bg-slate-100' textStyles='text-sm text-ascent-dark' rightIcon={<FcGoogle size={20} strokeWidth={0.5} className='ml-1' />} />
                       </div>
                     </div>
                   </div>

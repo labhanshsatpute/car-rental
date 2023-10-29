@@ -12,6 +12,7 @@ interface UserInterface extends Document {
     email: String;
     phone: String;
     gender: String;
+    dateOfBirth: Date;
     password: String;
     profileImage: String;
     googleId: String;
@@ -39,7 +40,10 @@ const userSchema: Schema = new mongoose.Schema({
     },
     gender: {
         type: String,
-        enum: Object.values(Gender),
+        default: null,
+    },
+    dateOfBirth: {
+        type: Date,
         default: null
     },
     password: {

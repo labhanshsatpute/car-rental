@@ -1,7 +1,4 @@
 import '../styles/globals.css';
-import { Inter } from 'next/font/google'
-
-const inter = Inter({ subsets: ['latin'] })
 
 export default function RootLayout({
   children,
@@ -13,7 +10,7 @@ export default function RootLayout({
       <head>
         <link rel="icon" href="/favicon.ico" sizes="any" />
       </head>
-      <body className={inter.className}>
+      <body>
         <main className='overflow-x-hidden'>
           {children}
         </main>

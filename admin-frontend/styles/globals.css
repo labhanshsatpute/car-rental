@@ -1,20 +1,516 @@
+@charset "UTF-8";
+
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600;700&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-@layer components {
-    .container {
-        @apply md:max-w-[64rem] lg:max-w-[90rem] sm:max-w-[36rem] lg:px-20 md:px-10 sm:px-6 self-center;
-    }  
-}
-
 @layer base {
+    html {
+        font-family: 'DM Sans', sans-serif;
+    }
+
     body {
         overflow-x: hidden;
-        scroll-behavior: smooth;
     }
 }
 
-.link {
-    @apply font-medium text-ascent hover:text-ascent-dark transition duration-300 ease-in-out hover:ease-in-out
+@layer components {
+    .container {
+        @apply sm:max-w-[26rem] md:max-w-[96rem] md:px-2 sm:px-3 self-center;
+    }
 }
+
+/* Buttons (Start) */
+
+.btn-light-sm {
+    @apply bg-complement border border-complement text-xs font-medium text-ascent px-4 py-2.5 hover:bg-ascent hover:text-white hover:border-ascent rounded-md transition duration-300 ease-in-out hover:ease-in-out relative
+}
+
+.btn-light-md {
+    @apply bg-complement border border-complement text-sm font-medium text-ascent px-4 py-3 hover:bg-ascent hover:text-white hover:border-ascent rounded-lg transition duration-300 ease-in-out hover:ease-in-out relative
+}
+
+.btn-light-lg {
+    @apply bg-complement border border-complement text-base font-medium text-ascent px-4 py-3.5 hover:bg-ascent hover:text-white hover:border-ascent rounded-xl transition duration-300 ease-in-out hover:ease-in-out relative
+}
+
+.btn-primary-sm {
+    @apply bg-ascent border border-ascent text-xs font-medium text-white px-4 py-2.5 hover:bg-ascent-dark hover:border-ascent-dark rounded-md transition duration-300 ease-in-out hover:ease-in-out relative
+}
+
+.btn-primary-md {
+    @apply bg-ascent border border-ascent text-sm font-medium text-white px-4 py-3 hover:bg-ascent-dark hover:border-ascent-dark rounded-lg transition duration-300 ease-in-out hover:ease-in-out relative
+}
+
+.btn-primary-lg {
+    @apply bg-ascent border border-ascent text-base font-medium text-white px-4 py-3.5 hover:bg-ascent-dark hover:border-ascent-dark rounded-xl transition duration-300 ease-in-out hover:ease-in-out relative
+}
+
+.btn-secondary-sm {
+    @apply bg-white border border-ascent text-xs font-medium text-ascent px-4 py-2.5 hover:bg-ascent-dark hover:border-ascent-dark hover:text-white rounded-md transition duration-300 ease-in-out hover:ease-in-out relative
+}
+
+.btn-secondary-md {
+    @apply bg-white border border-ascent text-sm font-medium text-ascent px-4 py-3 hover:bg-ascent-dark hover:border-ascent-dark hover:text-white rounded-lg transition duration-300 ease-in-out hover:ease-in-out relative
+}
+
+.btn-secondary-lg {
+    @apply bg-white border border-ascent text-base font-medium text-ascent px-4 py-3.5 hover:bg-ascent-dark hover:border-ascent-dark hover:text-white rounded-xl transition duration-300 ease-in-out hover:ease-in-out relative
+}
+
+.btn-danger-sm {
+    @apply bg-red-400 border border-red-400 text-xs font-medium text-white px-4 py-2.5 hover:bg-red-600 hover:border-red-600 rounded-md transition duration-300 ease-in-out hover:ease-in-out relative
+}
+
+.btn-danger-md {
+    @apply bg-red-400 border border-red-400 text-sm font-medium text-white px-4 py-3 hover:bg-red-600 hover:border-red-600 rounded-lg transition duration-300 ease-in-out hover:ease-in-out relative
+}
+
+.btn-danger-lg {
+    @apply bg-red-400 border border-red-400 text-base font-medium text-white px-4 py-3.5 hover:bg-red-600 hover:border-red-600 rounded-xl transition duration-300 ease-in-out hover:ease-in-out relative
+}
+
+.link {
+    @apply text-ascent hover:text-ascent-dark transition duration-300 ease-in-out hover:ease-in-out font-medium
+}
+a {
+    @apply whitespace-nowrap
+}
+
+/* Buttons (End) */
+
+/* Inputs (Start) */
+.input-group {
+    @apply flex flex-col
+}
+
+.input-box-sm {
+    @apply px-3 py-2.5 border rounded-md text-xs outline-ascent border-gray-200 font-medium bg-white
+}
+
+.input-box-md {
+    @apply px-4 py-3 border rounded-lg text-sm outline-ascent border-gray-200 font-medium bg-white
+}
+
+.input-box-lg {
+    @apply px-5 py-3.5 border rounded-xl text-base outline-ascent border-gray-200 font-medium bg-white
+}
+
+.input-box-sm.input-invalid,
+.input-box-md.input-invalid,
+.input-box-lg.input-invalid {
+    @apply border-red-600
+}
+
+.input-label {
+    @apply text-xs font-medium text-slate-800 mb-2 text-left
+}
+
+.input-error {
+    @apply text-xs font-medium text-red-600 mt-2 text-left
+}
+
+.input-box-sm.tagify,
+.input-box-md.tagify,
+.input-box-lg.tagify {
+    @apply p-[0.3rem]
+}
+
+.tagify.tagify--focus {
+    @apply ring-[1.5px] ring-ascent
+}
+
+.input-radio {
+    @apply flex items-center space-x-1.5
+}
+
+.input-radio input[type=radio] {
+    @apply w-4 h-4 text-ascent cursor-pointer
+}
+
+input[type=file] {
+    @apply pt-[0.58rem] pb-[0.58rem]
+}
+
+.input-radio label {
+    @apply font-medium text-slate-800 text-xs cursor-pointer
+}
+
+input:not(.peer)[type=checkbox] {
+    @apply appearance-none h-4 w-4 border border-gray-200 rounded bg-white checked:border-ascent checked:bg-ascent focus:outline-none transition duration-200 align-top bg-no-repeat bg-center bg-contain float-left mr-2 cursor-pointer text-white
+}
+
+input:not(.peer)[type=checkbox]:checked {
+    background-image: url("data:image/svg+xml,%3csvg viewBox='0 0 16 16' fill='white' xmlns='http://www.w3.org/2000/svg'%3e%3cpath d='M12.207 4.793a1 1 0 010 1.414l-5 5a1 1 0 01-1.414 0l-2-2a1 1 0 011.414-1.414L6.5 9.086l4.293-4.293a1 1 0 011.414 0z'/%3e%3c/svg%3e");
+}
+
+input:read-only {
+    @apply outline-none cursor-default
+}
+
+.input-box-dragable {
+    @apply relative h-[200px] flex flex-col space-y-3 justify-center items-center w-full border-2 border-slate-300 border-dashed rounded text-slate-600 font-medium text-xs
+}
+
+.input-box-dragable input {
+    @apply absolute h-[200px] w-full cursor-pointer opacity-0
+}
+
+.input-thumbnail-preview {
+    @apply h-[200px] w-max rounded border-slate-200 border-2
+}
+
+.input-label em {
+    @apply text-ascent font-medium text-xs not-italic
+}
+
+.input-label span {
+    @apply text-gray-500 font-medium text-xs
+}
+
+input[type='date'].input-box-md {
+    padding-top: 0.7rem !important;
+    padding-bottom: 0.7rem !important;
+}
+
+select.input-box-md {
+    appearance: none;
+    background: white;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16px' height='16px' viewBox='0 0 24 24' fill='none'%3E%3Cpath d='M6.1018 8C5.02785 8 4.45387 9.2649 5.16108 10.0731L10.6829 16.3838C11.3801 17.1806 12.6197 17.1806 13.3169 16.3838L18.8388 10.0731C19.5459 9.2649 18.972 8 17.898 8H6.1018Z' fill='%23212121'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 0.5rem center;
+}
+.toggler-switch {
+    position: relative;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    width: 36px;
+    height: 20px;
+}
+.toggler-switch > input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+.slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #ccc;
+    -webkit-transition: .2s;
+    transition: .2s;
+}  
+.slider:before {
+    position: absolute;
+    content: "";
+    height: 14px;
+    width: 14px;
+    left: 3px;
+    bottom: 3px;
+    background-color: white;
+    -webkit-transition: .2s;
+    transition: .2s;
+}  
+input:checked + .slider {
+    @apply bg-ascent
+}
+input:checked + .slider:before {
+    -webkit-transform: translateX(16px);
+    -ms-transform: translateX(16px);
+    transform: translateX(16px);
+}
+.slider {
+    border-radius: 12px;
+}
+.slider:before {
+    border-radius: 9px;
+}
+
+/* Inputs (End) */
+
+/* Layout (Start) */
+/* Panel (Start) */
+section#panel-section {
+    @apply relative h-screen overflow-y-auto w-[100%] bg-complement
+}
+.panel-container {
+    @apply relative md:p-8 sm:p-3.5 z-10 lg:space-y-8 md:space-y-7 sm:space-y-6
+}
+.panel-header {
+    @apply flex lg:flex-row md:flex-row sm:flex-col-reverse lg:items-center justify-between gap-6
+}
+.panel-header .panel-title {
+    @apply font-semibold md:text-3xl sm:text-2xl text-ascent-dark
+}
+.panel-header .breadcrumb {
+    @apply flex items-center justify-start text-xs font-medium text-[#707EAE] md:space-x-2 sm:space-x-1 mb-3
+}
+.panel-header .breadcrumb svg {
+    @apply h-3 w-3 stroke-[3px] stroke-[#707EAE]
+}
+.panel-body {
+    @apply flex flex-col md:space-y-10 sm:space-y-5
+}
+/* Layout (End) */
+
+/* Sidebar (Start) */
+#sidebar {
+    @apply relative
+}
+.sidebar {
+    @apply lg:sticky md:sticky sm:fixed top-0 h-screen flex flex-col justify-start shadow-xl bg-white space-y-5 overflow-y-auto lg:w-[270px] md:w-[270px] z-50 
+}
+@media (max-width: 767px) {
+    #sidebar > .sidebar {
+        width: 100%;
+        left: -100%;
+        transition: 0.3s ease;
+        box-shadow: none;
+    }
+    #sidebar.active > .sidebar {
+        width: 80%;
+        left: 0%;
+        transition: 0.3s ease;
+        box-shadow: 0px 0px 25px rgba(0, 0, 0, 0.3);
+    }
+    #sidebar.active > .sidebar-overlay {
+        @apply h-full w-full fixed top-0 left-0 bg-black bg-opacity-50 z-40
+    }   
+}
+.sidebar-tab svg {
+    @apply h-[25px] w-[20px] stroke-[1px] mb-0.5 stroke-[#A3AED0]
+}
+.sidebar-tab > a {
+    @apply flex space-x-2 w-full pl-7 pr-10 py-3 items-center relative font-medium text-[#A3AED0] hover:bg-complement whitespace-nowrap
+}
+.sidebar-tab.active > a {
+    @apply after:absolute after:right-0 after:h-[30px] after:w-[5px] after:bg-ascent after:rounded-l-full text-ascent-dark
+}
+.sidebar-tab.active svg {
+    @apply stroke-ascent
+}
+/* Sidebar (End) */
+
+/* Panel Card (Start) */
+.panel-body {
+    @apply flex flex-col md:space-y-10 sm:space-y-5
+}
+.panel-card {
+    @apply bg-white shadow-lg rounded-xl overflow-clip h-fit
+}
+.panel-card-header {
+    @apply lg:p-6 sm:p-5 bg-white flex items-center justify-between border-b border-b-gray-200 rounded-t-md gap-3
+}
+.panel-card-title {
+    @apply text-sm font-medium text-black
+}
+.panel-card-description {
+    @apply text-[0.65rem] text-slate-500 mt-[2px]
+}
+.panel-card-body {
+    @apply lg:p-6 sm:p-5 bg-white rounded
+}
+.panel-card-footer {
+    @apply lg:p-6 sm:p-5 bg-white border-t border-t-gray-200 rounded-b-md
+}
+.panel-card-table {
+    @apply overflow-auto
+}
+.panel-card-table table {
+    @apply w-full border-collapse border border-gray-200
+}
+.panel-card-table table tbody tr:not(.ignore) {
+    @apply hover:shadow-lg hover:bg-ascent hover:bg-opacity-5 hover:border-2 hover:border-ascent hover:z-30 transition duration-100 ease-in-out hover:ease-in-out cursor-default
+}
+.panel-card-table table th { 
+    @apply py-5 px-7 text-xs text-slate-900 text-left font-medium whitespace-nowrap   
+}
+.panel-card-table table td {
+    @apply py-3 px-7 text-xs text-slate-800 text-left font-medium whitespace-nowrap
+}
+.panel-card-table table td {
+    @apply border-b border-b-gray-200
+}
+.panel-card-table table td .icon-row {
+    @apply flex items-center justify-start w-fit
+}
+.panel-card-table table td .icon-row svg {
+    @apply h-[16px] w-[16px] mr-1 mt-[2px] stroke-[2.4px]
+}
+.table-status-success {
+    @apply px-3 py-1.5 bg-lime-500 border-lime-500 border text-white font-medium text-xs w-fit rounded-md
+}
+.table-status-warning {
+    @apply px-3 py-1.5 bg-yellow-500 border-yellow-500 border text-white font-medium text-xs w-fit rounded-md
+}
+.table-status-danger {
+    @apply px-3 py-1.5 bg-red-500 border-red-500 border text-white font-medium text-xs w-fit rounded-md
+}
+.table-dropdown {
+    @apply relative w-fit
+}
+.table-dropdown button {
+    @apply inline-flex w-fit justify-center items-center rounded-md border text-white px-4 py-1.5 text-xs font-medium whitespace-nowrap bg-ascent hover:bg-ascent-dark border-ascent transition duration-200 ease-in-out hover:ease-in-out
+}
+.table-dropdown.active button {
+    @apply bg-ascent-dark
+}
+.table-dropdown .dropdown-menu {
+    @apply absolute border right-0 z-50 mt-2 w-fit origin-top-right rounded-md bg-white border-slate-300 shadow-[0px_0px_10px_rgba(0,0,0,0.2)] px-4 py-3 hidden
+}
+.table-dropdown.active .dropdown-menu {
+    @apply block
+}
+.table-dropdown .dropdown-menu ul {
+    @apply flex flex-col space-y-3
+}
+.table-dropdown .dropdown-menu a.dropdown-link-primary {
+    @apply font-medium text-slate-700 hover:text-ascent text-[0.65rem] whitespace-nowrap flex items-center justify-start
+}
+.table-dropdown .dropdown-menu  a.dropdown-link-danger {
+    @apply font-medium text-red-500 hover:text-red-700 text-[0.65rem] whitespace-nowrap flex items-center justify-start
+}
+.table-dropdown svg.toggler-icon {
+    @apply rotate-0 h-4 w-4 mb-[1px] stroke-[2px]
+}
+.table-dropdown.active svg.toggler-icon {
+    @apply rotate-180
+}
+.table-dropdown .dropdown-menu svg {
+    @apply rotate-0 h-[15px] w-[15px] stroke-[2px] mr-2
+}
+/* Panel Card (End) */
+
+/* Alert Boxes (Start) */
+.alert-success-sm {
+    @apply py-[0.4rem] px-3 bg-green-200 text-green-900 rounded flex items-center justify-center space-x-3 font-medium text-[0.65rem]
+}
+.alert-success-md {
+    @apply py-2 px-4 bg-green-200 text-green-900 rounded flex items-center justify-center space-x-3 font-medium text-xs
+}
+.alert-success-lg {
+    @apply py-2 px-5 bg-green-200 text-green-900 rounded flex items-center justify-center space-x-3 font-medium text-base
+}
+.alert-warning-sm {
+    @apply py-[0.4rem] px-3 bg-yellow-200 text-yellow-900 rounded flex items-center justify-center space-x-3 font-medium text-[0.65rem]
+}
+.alert-warning-md {
+    @apply py-2 px-4 bg-yellow-200 text-yellow-900 rounded flex items-center justify-center space-x-3 font-medium text-xs
+}
+.alert-warning-lg {
+    @apply py-2 px-5 bg-yellow-200 text-yellow-900 rounded flex items-center justify-center space-x-3 font-medium text-base
+}
+.alert-danger-sm {
+    @apply py-[0.4rem] px-3 bg-red-200 text-red-900 rounded flex items-center justify-center space-x-3 font-medium text-[0.65rem]
+}
+.alert-danger-md {
+    @apply py-2 px-4 bg-red-200 text-red-900 rounded flex items-center justify-center space-x-3 font-medium text-xs
+}
+.alert-danger-lg {
+    @apply py-2 px-5 bg-red-200 text-red-900 rounded flex items-center justify-center space-x-3 font-medium text-base
+}
+/* Alert Boxes (Start) */
+
+
+/* Sweet Alerts (Start) */
+.swal-modal {
+    @apply rounded-xl shadow-[0px_2px_25px_rgba(0,0,0,0.3)]
+}
+.swal-title {
+    @apply text-2xl text-black font-semibold
+}
+.swal-text {
+    @apply text-xs text-slate-600 text-center
+}
+.swal-button:focus {
+    @apply shadow-none border-none outline-none
+}
+.swal-button.swal-button--confirm {
+    @apply btn-primary-md
+}
+.swal-button.swal-button--cancel {
+    @apply btn-secondary-md
+}
+.swal-icon--success__line {
+    @apply bg-green-500
+}
+.swal-icon--success__ring {
+    @apply border-[#4bc10678]
+}
+.swal-footer {
+    @apply mb-5 text-center
+}
+/* Sweet Alerts (End) */
+
+/* Datatables (Start) */
+table.dataTable thead th {
+    font-weight: 600;
+}
+table.dataTable thead th, table.dataTable thead td {
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+    padding: 10px 25px !important;
+}
+#DataTables_Table_0_wrapper {
+    @apply grid grid-cols-2 justify-between gap-5 items-center
+}
+#DataTables_Table_0_filter {
+    @apply text-right
+}
+#DataTables_Table_0_filter input {
+    @apply px-4 py-[0.4rem] border rounded text-[0.65rem] outline-ascent border-slate-300 font-medium
+}
+#DataTables_Table_0_length label {
+    @apply px-4 py-[0.4rem] border rounded text-[0.65rem] outline-ascent border-slate-300 font-medium bg-transparent
+}
+#DataTables_Table_0_length select {
+    @apply px-1 py-2 rounded text-[0.65rem] outline-none font-medium bg-transparent border-none
+}
+#DataTables_Table_0_info {
+    @apply text-xs font-medium
+}
+#DataTables_Table_0_paginate {
+    @apply text-right
+}
+#DataTables_Table_0_paginate .paginate_button {
+    @apply px-4 py-[0.4rem] text-[0.65rem] bg-ascent bg-opacity-70 font-medium text-white relative hover:bg-ascent-dark active:bg-ascent-dark cursor-pointer rounded
+}
+#DataTables_Table_0_paginate .paginate_button {
+    color: #fff !important;
+}
+#DataTables_Table_0_paginate .paginate_button.previous {
+    @apply rounded text-white
+}
+#DataTables_Table_0_paginate .paginate_button.disabled {
+    @apply bg-opacity-20 cursor-default
+}
+#DataTables_Table_0_paginate .paginate_button.current {
+    @apply bg-ascent text-white
+}
+#DataTables_Table_0_paginate .paginate_button.current {
+    color: #fff !important;
+}
+#DataTables_Table_0_paginate .paginate_button.next {
+    @apply rounded text-white
+}
+#DataTables_Table_0_wrapper table {
+    @apply col-span-2
+}
+
+.navigation-tab {
+    @apply md:w-fit sm:w-full relative
+}
+.navigation-tab > a,
+.navigation-tab > button {
+    @apply text-gray-700 hover:text-ascent-dark font-medium text-sm
+}
+.navigation-tab.active > a,
+.navigation-tab.active > button {
+    @apply md:bg-opacity-10
+}
+/* Datatables (End) */

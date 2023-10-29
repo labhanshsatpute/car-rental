@@ -28,10 +28,7 @@ export default function Home() {
                 <div className='text-right'>
                   <a href="#" className='link text-xs'>Forgot password?</a>
                 </div>
-                <CustomButton type='submit' text='Submit' styles='w-full' rightIcon={
-                  <div className='bg-white bg-opacity-40 rounded ml-1 absolute right-4 top-3'>
-                    <BsArrowRightShort size={20} strokeWidth={0.4} />
-                  </div>
+                <CustomButton type='submit' text='Submit' styles='w-full' theme='primary' rightIcon={<BsArrowRightShort size={20} strokeWidth={0.5} className='ml-1' />
                 } />
               </div>
 
@@ -49,7 +46,7 @@ export default function Home() {
                   <p className='text-gray-100 text-xs leading-relaxed'>Lorem ipsum dolor sit amet consectetur adipisic. <br />Fuga, consequuntur reprehenderit.</p>
                 </div>
                 <div className='text-center space-y-3'>
-                  <CustomButton type='submit' text='Visit Website' styles='bg-white' textStyles='text-ascent group-hover:text-white' rightIcon={<BsLink45Deg size={20} className='ml-1 fill-ascent stroke-ascent group-hover:stroke-white group-hover:fill-white' strokeWidth={0.4} />} />
+                  <CustomButton type='submit' text='Visit Website' theme='light' rightIcon={<BsLink45Deg size={20} className='ml-1' strokeWidth={0.4} />} />
                 </div>
               </div>
             </div>

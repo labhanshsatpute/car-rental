@@ -6,7 +6,8 @@ import { LiaTimesSolid } from "react-icons/lia";
 import { CustomInput, CustomButton } from '@/components';
 import { BsArrowRightShort } from "react-icons/bs";
 import { FcGoogle } from "react-icons/fc";
-import { handleRegister } from '../../services/authentication';
+import { UserRegister } from '../../services/authentication';
+import { toast } from 'react-toastify';
 
 interface SignupModalProps {
   isOpen: boolean;
@@ -14,8 +15,6 @@ interface SignupModalProps {
 }
 
 const SignupModal = ({ isOpen, closeModal }: SignupModalProps) => {
-
-  const [errorMessage, setErrorMessage] = useState(null);
 
   const [inputFields, setInpuFields] = useState({
     name: '',
@@ -31,22 +30,31 @@ const SignupModal = ({ isOpen, closeModal }: SignupModalProps) => {
 
   const handleFormSubmit = async (event: any) => {
     event.preventDefault();
-    setErrorMessage(null);
-    const result = await handleRegister(inputFields);
+    const result = await UserRegister(inputFields);
     if (result.status) {
       console.log(result.data);
     }
     else {
-      setErrorMessage(result.message);
+      toast.error(result.message);
     }
   }
 
   const focusRef = useRef(null);
 
+  const handleCloseModal = () => {
+    setInpuFields({
+      name: '',
+      email: '',
+      password: '',
+      confirmPassword: ''
+    });
+    closeModal();
+  }
+
   return (
     <React.Fragment>
       <Transition appear as={Fragment} show={isOpen}>
-        <Dialog as='div' className={'relative z-50'} onClose={closeModal} initialFocus={focusRef}>
+        <Dialog as='div' className={'relative z-50'} onClose={handleCloseModal} initialFocus={focusRef}>
 
           {/* BackDrop Overlay */}
           <Transition.Child
@@ -79,9 +87,6 @@ const SignupModal = ({ isOpen, closeModal }: SignupModalProps) => {
                         <h1 className='text-2xl font-semibold text-ascent-dark'>Create an Account</h1>
                         <p className='text-xs text-gray-600'>Cnter the required fields to create account</p>
                       </div>
-                      { errorMessage && <div className='text-center'>
-                        <p className='text-red-500 font-medium text-sm'>{errorMessage}</p>
-                      </div>}
                       <div className='space-y-3'>
                         <CustomInput name='name' value={inputFields.name} type='text' placeHolder='Enter Name' handleChange={(event) => handleInputChange(event)} label='Your Name' required={true} />
                         <CustomInput name='email' value={inputFields.email} type='email' placeHolder='Enter Email Address' handleChange={(event) => handleInputChange(event)} label='Email Address' required={true} />

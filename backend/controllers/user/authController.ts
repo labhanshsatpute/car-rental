@@ -135,24 +135,6 @@ class AuthController {
             });
         }
     }
-
-    static async handleGetAuthUser(req: Request, res: Response) {
-        try {
-
-            return res.status(200).send({
-                status: true,
-                message: "User successfully fetched",
-                data: (req as any).user,
-            });
-        
-        } catch (error) {
-            return res.status(500).send({
-                status: false,
-                message: "Internal server error",
-                error: error
-            });
-        }
-    }
 }
 
 export default AuthController;

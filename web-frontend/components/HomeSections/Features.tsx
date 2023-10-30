@@ -1,3 +1,5 @@
+"use client"
+
 import Image from 'next/image'
 import React from 'react'
 import { FaTags, FaWallet, FaHeadset } from "react-icons/fa";

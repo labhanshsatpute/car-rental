@@ -1,3 +1,5 @@
+"use client"
+
 import React, { MouseEventHandler } from "react";
 
 interface CustomButtonProps {

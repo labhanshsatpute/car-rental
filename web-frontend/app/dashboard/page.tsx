@@ -1,4 +1,3 @@
-import { Catalogue, Features, Intro } from '@/components'
 import React from 'react'
 import type { Metadata } from 'next'
 

@@ -1,3 +1,5 @@
+"use client"
+
 import { AuthUserLogout } from '@/redux/actions/AuthAction';
 import { Dialog, Transition } from '@headlessui/react'
 import { deleteCookie } from 'cookies-next';

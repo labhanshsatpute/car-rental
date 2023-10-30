@@ -1,33 +1,26 @@
 'use client'
 
 import React, { useState } from 'react'
-import { FaUserCircle } from 'react-icons/fa'
+import { TbLogout, TbClipboardText, TbSettings, TbUserCircle } from 'react-icons/tb';
 import { Menu, Transition } from '@headlessui/react'
-import { useDispatch } from 'react-redux'
-import { AuthUserLogout } from '@/redux/actions/AuthAction'
-import { deleteCookie } from 'cookies-next'
+import LogoutModal from '@/components/Authentication/LogoutModal'
 
 const AuthDropdown = ({ auth }: {
   auth: any
 }) => {
 
-  const dispatch = useDispatch();
-
-  const handleLogout = () => {
-    deleteCookie('accessToken');
-    dispatch(AuthUserLogout());
-  }
-
+  const [logoutModalState, setLogoutModalState] = useState(false);
+  
   return (
     <React.Fragment>
       <div className='relative'>
         <Menu>
-          <Menu.Button className='flex items-center space-x-3 text-left'>
+          <Menu.Button className='flex items-center space-x-1 text-left p-1.5 lg:pr-4 bg-gray-100 rounded-lg'>
             <div>
-              <FaUserCircle size={30} />
+              <TbUserCircle size={32} />
             </div>
-            <div>
-              <h6 className='text-sm font-medium'>{auth.name}</h6>
+            <div className='lg:block md:block sm:hidden'>
+              <h6 className='text-xs font-medium'>{auth.name}</h6>
               <p className='text-[0.6rem]'>{auth.email}</p>
             </div>
           </Menu.Button>
@@ -40,14 +33,28 @@ const AuthDropdown = ({ auth }: {
             leaveTo="transform scale-95 opacity-0"
           >
             <Menu.Items className={'absolute bg-white shadow-lg top-full mt-3 right-0 py-4 px-5 rounded-lg border z-40'}>
-              <div className='flex flex-col space-y-2 text-left items-start'>
-                <button className='font-medium text-xs whitespace-nowrap'>Account Settings</button>
-                <button className='font-medium text-xs whitespace-nowrap'>My Orders</button>
-                <button onClick={() => handleLogout()} className='font-medium text-xs whitespace-nowrap'>Logout</button>
+              <div className='flex flex-col space-y-3 text-left items-start'>
+                <button className='font-medium text-xs whitespace-nowrap flex items-center space-x-1 hover:text-ascent transition duration-300 ease-in-out hover:ease-in-out'>
+                  <TbSettings size={17} />
+                  <span>Account Settings</span>
+                </button>
+                <button className='font-medium text-xs whitespace-nowrap flex items-center space-x-1 hover:text-ascent transition duration-300 ease-in-out hover:ease-in-out'>
+                  <TbClipboardText size={17} />
+                  <span>My Bookings</span>
+                </button>
+                <button className='font-medium text-xs whitespace-nowrap flex items-center space-x-1 hover:text-ascent transition duration-300 ease-in-out hover:ease-in-out' 
+                onClick={() => setLogoutModalState(true)}>
+                  <TbLogout size={17} />
+                  <span>Logout</span>
+                </button>
               </div>
-            </Menu.Items></Transition>
+            </Menu.Items>
+          </Transition>
         </Menu>
       </div>
+
+      <LogoutModal isOpen={logoutModalState} closeModal={() => setLogoutModalState(false)} />
+
     </React.Fragment>
   )
 }

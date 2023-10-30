@@ -8,7 +8,7 @@ import { BsArrowRightShort } from "react-icons/bs";
 import { FcGoogle } from "react-icons/fc";
 import { signInWithPopup } from 'firebase/auth';
 import { auth, provider } from '@/services/firebase';
-import { UserLogin } from '@/services/authentication';
+import { UserLogin, UserLoginWithGoogle } from '@/services/authentication';
 import { toast } from 'react-toastify';
 import { useDispatch } from 'react-redux';
 import { AuthUserLogin } from '@/redux/actions/AuthAction';
@@ -21,8 +21,24 @@ interface LoginModalProps {
 const LoginModal = ({ isOpen, closeModal }: LoginModalProps) => {
   
   const handleGoogleSignup = () => {
-    signInWithPopup(auth, provider).then((data) => {
-      console.log(data);
+    signInWithPopup(auth, provider).then( async (data) => {
+      const { 
+        displayName,
+        email,
+        uid
+      } = data.user.providerData[0];
+      const result = await UserLoginWithGoogle({
+        name: displayName,
+        email: email,
+        googleId: uid
+      });
+      if (result.status) {
+        handleCloseModal();
+        dispatch(AuthUserLogin(result.data.data.user))
+      }
+      else {
+        toast.error(result.message);
+      }
     })
   }
 

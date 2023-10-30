@@ -135,6 +135,97 @@ class AuthController {
             });
         }
     }
+
+    static async handleLoginWithGoogle(req: Request, res: Response) {
+        try {
+            
+            if (!req.body.googleId) {
+                res.status(400).send({
+                    status: false,
+                    messsage: "Please enter google Id",
+                    data: null
+                });
+            }
+
+            const checkUser = await User.findOne({ googleId: req.body.googleId });
+            if (checkUser) {
+                const token = checkUser.generateAuthToken(checkUser._id);
+
+                const userAgentString = req.headers['user-agent'];
+                const agent = useragent.parse(userAgentString);
+
+                await new UserAccessToken({ 
+                    userId: checkUser._id, 
+                    token: token, 
+                    operatingSystem: agent.os.family, 
+                    ipAddress: req.ip 
+                }).save();
+
+                return res.status(200).send({
+                    status: true,
+                    message: "User successfully loggedin",
+                    data: {
+                        'user': checkUser,
+                        'accessToken': token
+                    }
+                });
+            }
+
+            const data = joi.object({
+                name: joi.string().required().min(5).max(250).label('Name'),
+                email: joi.string().email().required().min(10).max(250).label('Email'),
+                googleId: joi.string().required().label('Google ID')
+            });
+
+            const { error } = data.validate(req.body);
+
+            if (error) {
+                return res.status(200).send({
+                    status: false,
+                    message: error.details[0].message,
+                    data: error.details
+                });
+            }
+
+            const isEmailExists = await User.findOne({ email: req.body.email });
+            if (isEmailExists) {
+                return res.status(200).send({
+                    status: false,
+                    message: "Email already in exists",
+                    data: null
+                });   
+            }
+
+            const user = await new User(req.body).save();
+            const token = user.generateAuthToken(user._id);
+
+            const userAgentString = req.headers['user-agent'];
+            const agent = useragent.parse(userAgentString);
+
+            await new UserAccessToken({ 
+                userId: user._id, 
+                token: token, 
+                operatingSystem: agent.os.family, 
+                ipAddress: req.ip 
+            }).save();
+            
+            return res.status(201).send({
+                status: true,
+                message: "User successfully registred",
+                data: {
+                    'user': user,
+                    'accessToken': token
+                }
+            });
+
+        } catch (error) {
+            return res.status(500).send({
+                status: false,
+                message: "Internal server error",
+                error: error
+            });
+        }
+    }
 }
 
 export default AuthController;

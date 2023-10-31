@@ -1,10 +1,9 @@
-import dotenv from 'dotenv';
 import express from "express";
 import dbConnection from "../config/database";
 import cors from 'cors';
 import userRouter from '../routes/user';
 
-dotenv.config();
+require("dotenv").config();
 
 const port: number = 8000;
 

@@ -4,7 +4,7 @@
   "description": "",
   "main": "app/app.ts",
   "scripts": {
-    "start": "npx ts-node app/app.ts",
+    "start": "ts-node app/app.ts",
     "dev": "nodemon app/app.ts"
   },
   "author": "Labhansh Satpute",

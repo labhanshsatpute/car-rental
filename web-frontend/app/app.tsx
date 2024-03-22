@@ -18,7 +18,7 @@ export default function AppLayout({
 
   const dispatch = useDispatch();
 
-  const [sidebarState, setSidebarState] = useState(true);
+  const [sidebarState, setSidebarState] = useState(false);
 
   if (hasCookie('accessToken')) {
     const accessToken = getCookie('accessToken');

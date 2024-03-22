@@ -13,6 +13,9 @@
         overflow-x: hidden;
         scroll-behavior: smooth;
     }
+    main {
+        overflow-x: hidden;
+    }
 }
 
 .nav-link {
@@ -56,10 +59,10 @@
     transition: 0.3s ease;
 }
 .mobile-sidebar .sidebar-content {
-    @apply absolute left-0 top-0 w-[80%] h-screen bg-white z-40 border-r shadow-lg
+    @apply absolute left-0 top-0 w-[80%] h-screen bg-white z-40 border-r shadow-xl
 }
 .mobile-sidebar .sidebar-overlay {
-    @apply absolute top-0 left-0 bg-black bg-opacity-20  w-full h-screen z-30
+    @apply absolute top-0 left-0 bg-black bg-opacity-30  w-full h-screen z-30
 }
 .mobile-sidebar .sidebar-overlay {
     opacity: 0;

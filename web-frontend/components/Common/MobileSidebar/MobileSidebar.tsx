@@ -3,13 +3,12 @@ import React, { useState } from 'react'
 import { IoChevronForward } from "react-icons/io5";
 import { AuthDropdown, CustomButton, LoginModal, SignupModal } from '@/components';
 
-const SidebarTabLink = ({ label, link }: {
+const SidebarTabLink = ({ label }: {
   label: String;
-  link: String;
 }) => {
   return (
     <React.Fragment>
-      <Link href={link}>
+      <Link href={"/"}>
         <div className='flex items-center justify-between w-full p-5'>
           <span className='font-medium text-base'>{label}</span>
           <IoChevronForward size={25} />
@@ -50,13 +49,13 @@ const MobileSidebar = ({ sidebarState, toggleSidebar }: {
         <div className='relative'>
           <div className='sidebar-content flex flex-col lg:pt-[92px] md:pt-[92px] sm:pt-[71px]'>
             <div className='h-full relative overflow-y-auto'>
-              <SidebarTabLink label={"Rent a Car"} link={"/"} />
+              <SidebarTabLink label={"Rent a Car"} />
               <hr />
-              <SidebarTabLink label={"About us"} link={"/"} />
+              <SidebarTabLink label={"About us"} />
               <hr />
-              <SidebarTabLink label={"Contact us"} link={"/"} />
+              <SidebarTabLink label={"Contact us"} />
               <hr />
-              <SidebarTabLink label={"Support"} link={"/"} />
+              <SidebarTabLink label={"Support"} />
               <hr />
               <SidebarTabButton label={"Already have an Account"} callBackFunction={() => setLoginModalState(true)} />
               <hr />

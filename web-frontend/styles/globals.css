@@ -34,3 +34,40 @@
 .footer-link {
     @apply text-sm text-gray-500 hover:text-ascent transition duration-300 ease-in-out hover:ease-in-out
 }
+
+.dashboard-tab {
+    @apply bg-ascent border-0 px-5 py-3 rounded-lg font-medium text-sm bg-opacity-10 text-ascent-dark
+}
+.dashboard-tab.active {
+    @apply bg-ascent-dark border-0 px-5 py-3 rounded-lg font-medium text-sm text-white
+}
+
+.mobile-sidebar {
+    position: fixed;
+    top: 0%;
+    left: -100%;
+    height: 100vh;
+    width: 100%;
+    z-index: 40;
+    transition: 0.3s ease;
+}
+.mobile-sidebar.active {
+    left: 0%;
+    transition: 0.3s ease;
+}
+.mobile-sidebar .sidebar-content {
+    @apply absolute left-0 top-0 w-[80%] h-screen bg-white z-40 border-r shadow-lg
+}
+.mobile-sidebar .sidebar-overlay {
+    @apply absolute top-0 left-0 bg-black bg-opacity-20  w-full h-screen z-30
+}
+.mobile-sidebar .sidebar-overlay {
+    opacity: 0;
+    transition-delay: 1s;
+    transition: 0s ease;
+}
+.mobile-sidebar.active .sidebar-overlay {
+    opacity: 1;
+    transition-delay: 1s;
+    transition: 1.5s ease;
+}

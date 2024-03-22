@@ -20,6 +20,7 @@ export default function RootLayout({
     <Provider store={store}>
       <html lang="en">
         <head>
+          <title>CarsHub</title>
           <link rel="icon" href="/favicon.ico" sizes="any" />
         </head>
         <body className={inter.className}>

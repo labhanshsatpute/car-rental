@@ -9,13 +9,13 @@ import { FiMenu } from "react-icons/fi";
 import Image from 'next/image';
 import { useSelector } from 'react-redux';
 
-const Header = () => {
+const Header = ({ toggleSidebar }: {
+  toggleSidebar: () => void
+}) => {
 
   const [loginModalState, setLoginModalState] = useState(false);
 
   const [signupModalState, setSignupModalState] = useState(false);
-
-  const [mobileMenu, setMobileMenu] = useState(false);
 
   const AuthButton = () => {
     const auth = useSelector((state: any) => state.AuthReducer);
@@ -36,7 +36,7 @@ const Header = () => {
 
   return (
     <React.Fragment>
-      <header className='relative z-50 top-0'>
+      <header className='z-50 top-0 fixed w-full bg-white shadow-lg'>
         <nav className='container md:block sm:hidden py-6'>
           <div className='flex items-center justify-between'>
 
@@ -68,21 +68,13 @@ const Header = () => {
                 <Image src={"/images/logo.png"} alt='carshub-logo' height={50} width={160} />
               </div>
 
-              <div className='flex items-center space-x-4'>
-                <AuthButton />
+              <div>
+                <button onClick={toggleSidebar}>
+                Toggle Sidebar
+                </button>
               </div>
 
             </div>
-            <Transition as={Fragment} show={mobileMenu}>
-              <div className='py-5 border-t'>
-                <ul className='flex flex-col space-y-5'>
-                  <li><Link href={"/"} className='nav-link'>Rent a Car</Link></li>
-                  <li><Link href={"/"} className='nav-link'>Brands</Link></li>
-                  <li><Link href={"/about"} className='nav-link'>About us</Link></li>
-                  <li><Link href={"/"} className='nav-link'>Contact us</Link></li>
-                </ul>
-              </div>
-            </Transition>
           </div>
 
         </nav>

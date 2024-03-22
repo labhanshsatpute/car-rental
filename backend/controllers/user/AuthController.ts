@@ -6,8 +6,7 @@ import UserAccessToken from '../../models/UserAccessToken';
 import useragent from 'useragent';
 
 class AuthController {
-    
-    
+
     static async handleRegisterUser(req: Request, res: Response): Promise<Response> {
 
         try {

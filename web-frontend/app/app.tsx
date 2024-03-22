@@ -1,13 +1,14 @@
 'use client'
 
 import { Footer, Header } from '@/components'
-import React from 'react'
+import React, { useState } from 'react'
 import { ToastContainer } from 'react-toastify'
 import { useDispatch } from 'react-redux';
 import axios from 'axios';
 import { AuthUserLogin, AuthUserLogout } from '@/redux/actions/AuthAction';
 import { getCookie, hasCookie } from 'cookies-next';
 import 'react-toastify/dist/ReactToastify.css';
+import MobileSidebar from '@/components/Common/MobileSidebar/MobileSidebar';
 
 export default function AppLayout({
   children,
@@ -16,6 +17,8 @@ export default function AppLayout({
 }) {
 
   const dispatch = useDispatch();
+
+  const [sidebarState, setSidebarState] = useState(true);
 
   if (hasCookie('accessToken')) {
     const accessToken = getCookie('accessToken');
@@ -34,8 +37,9 @@ export default function AppLayout({
 
   return (
     <React.Fragment>
-      <Header />
-      <main className='overflow-x-hidden'>
+      <Header toggleSidebar={() => setSidebarState(!sidebarState)} />
+      <MobileSidebar state={sidebarState} toggleSidebar={() => setSidebarState(false)} />
+      <main className='overflow-x-hidden mt-[100px]'>
         {children}
       </main>
       <Footer />

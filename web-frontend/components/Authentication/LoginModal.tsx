@@ -79,7 +79,7 @@ const LoginModal = ({ isOpen, closeModal }: LoginModalProps) => {
   return (
     <React.Fragment>
       <Transition appear as={Fragment} show={isOpen}>
-        <Dialog as='div' className={'relative z-50'} onClose={() => handleCloseModal} initialFocus={focusRef}>
+        <Dialog as='div' className={'relative z-50'} onClose={handleCloseModal} initialFocus={focusRef}>
 
           {/* BackDrop Overlay */}
           <Transition.Child

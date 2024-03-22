@@ -4,6 +4,7 @@ import React, { useState } from 'react'
 import { TbLogout, TbClipboardText, TbSettings, TbUserCircle } from 'react-icons/tb';
 import { Menu, Transition } from '@headlessui/react'
 import LogoutModal from '@/components/Authentication/LogoutModal'
+import Link from 'next/link';
 
 const AuthDropdown = ({ auth }: {
   auth: any
@@ -34,10 +35,10 @@ const AuthDropdown = ({ auth }: {
           >
             <Menu.Items className={'absolute bg-white shadow-lg top-full mt-3 right-0 py-4 px-5 rounded-lg border z-40'}>
               <div className='flex flex-col space-y-3 text-left items-start'>
-                <button className='font-medium text-xs whitespace-nowrap flex items-center space-x-1 hover:text-ascent transition duration-300 ease-in-out hover:ease-in-out'>
+                <Link href={"/dashboard"} className='font-medium text-xs whitespace-nowrap flex items-center space-x-1 hover:text-ascent transition duration-300 ease-in-out hover:ease-in-out'>
                   <TbSettings size={17} />
                   <span>Account Settings</span>
-                </button>
+                </Link>
                 <button className='font-medium text-xs whitespace-nowrap flex items-center space-x-1 hover:text-ascent transition duration-300 ease-in-out hover:ease-in-out'>
                   <TbClipboardText size={17} />
                   <span>My Bookings</span>

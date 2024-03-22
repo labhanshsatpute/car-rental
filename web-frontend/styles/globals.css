@@ -71,3 +71,37 @@
     transition-delay: 1s;
     transition: 1.5s ease;
 }
+.mobile-sidebar-toggler {
+    @apply relative flex items-center justify-center h-[30px] w-[30px]
+}
+.mobile-sidebar-toggler div {
+    @apply h-[3px] w-[30px] bg-black rounded-sm absolute right-0
+}
+.mobile-sidebar-toggler div:nth-child(1) {
+    top: 3px;
+    transition: 0.3s ease;
+}
+.mobile-sidebar-toggler div:nth-child(2) {
+    right: 0px;
+    opacity: 1;
+    transition: 0.3s ease;
+}
+.mobile-sidebar-toggler div:nth-child(3) {
+    bottom: 3px;
+    transition: 0.3s ease;
+}
+.mobile-sidebar-toggler.active div:nth-child(1) {
+    rotate: 45deg;
+    top: 13.5px;
+    transition: 0.3s ease;
+}
+.mobile-sidebar-toggler.active div:nth-child(2) {
+    right: -30px;
+    opacity: 0;
+    transition: 0.3s ease;
+}
+.mobile-sidebar-toggler.active div:nth-child(3) {
+    rotate: -45deg;
+    bottom: 13.5px;
+    transition: 0.3s ease;
+}

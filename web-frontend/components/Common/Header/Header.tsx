@@ -9,7 +9,8 @@ import { FiMenu } from "react-icons/fi";
 import Image from 'next/image';
 import { useSelector } from 'react-redux';
 
-const Header = ({ toggleSidebar }: {
+const Header = ({ sidebarState, toggleSidebar }: {
+  sidebarState: Boolean
   toggleSidebar: () => void
 }) => {
 
@@ -69,8 +70,10 @@ const Header = ({ toggleSidebar }: {
               </div>
 
               <div>
-                <button onClick={toggleSidebar}>
-                Toggle Sidebar
+                <button onClick={toggleSidebar} className={`mobile-sidebar-toggler ${sidebarState ? 'active' : null }`}>
+                  <div/>
+                  <div/>
+                  <div/>
                 </button>
               </div>
 

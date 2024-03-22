@@ -1,12 +1,12 @@
 import React from 'react'
 
-const MobileSidebar = ({ state, toggleSidebar }: {
-  state: Boolean,
+const MobileSidebar = ({ sidebarState, toggleSidebar }: {
+  sidebarState: Boolean,
   toggleSidebar: () => void
 }) => {
   return (
     <React.Fragment>
-      <aside className={`mobile-sidebar ${state && 'active'}`}>
+      <aside className={`mobile-sidebar ${sidebarState && 'active'}`}>
         <div className='relative'>
           <div className='sidebar-content'>
 

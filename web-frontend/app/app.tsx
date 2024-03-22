@@ -37,11 +37,11 @@ export default function AppLayout({
 
   return (
     <React.Fragment>
-      <Header toggleSidebar={() => setSidebarState(!sidebarState)} />
-      <MobileSidebar state={sidebarState} toggleSidebar={() => setSidebarState(false)} />
-      <main className='overflow-x-hidden mt-[100px]'>
-        {children}
-      </main>
+      <Header sidebarState={sidebarState} toggleSidebar={() => setSidebarState(!sidebarState)} />
+      <MobileSidebar sidebarState={sidebarState} toggleSidebar={() => setSidebarState(false)} />
+        <main className='overflow-x-hidden lg:mt-[92px] md:mt-[92px] sm:mt-[71px]'>
+          {children}
+        </main>
       <Footer />
       <ToastContainer position='top-center' />
     </React.Fragment>

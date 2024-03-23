@@ -28,10 +28,10 @@ module.exports = {
     },
     extend: {
       colors: {
-        "dominant": "#FFF",
-        "complement": "#F4F4F4",
-        "ascent": "#fe5b3e",
-        "ascent-dark": "#292f71",
+        'dominant': '#FFF',
+              'complement': '#F4F7FE',
+              'ascent': '#4318FF',
+              'ascent-dark': '#2B3674',
       },
     },
   },

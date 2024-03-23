@@ -14,6 +14,10 @@
     body {
         overflow-x: hidden;
     }
+
+    main {
+        @apply flex
+    }
 }
 
 @layer components {
@@ -23,6 +27,21 @@
 }
 
 /* Buttons (Start) */
+
+.btn-primary-sm svg,
+.btn-primary-md svg,
+.btn-primary-lg svg,
+.btn-secondary-sm svg,
+.btn-secondary-md svg,
+.btn-secondary-lg svg,
+.btn-danger-sm svg,
+.btn-danger-md svg,
+.btn-danger-lg svg,
+.btn-light-sm svg,
+.btn-light-md svg,
+.btn-light-lg svg {
+    @apply h-3.5 w-3.5 stroke-[2.5px]
+}
 
 .btn-light-sm {
     @apply bg-complement border border-complement text-xs font-medium text-ascent px-4 py-2.5 hover:bg-ascent hover:text-white hover:border-ascent rounded-md transition duration-300 ease-in-out hover:ease-in-out relative
@@ -123,7 +142,7 @@ a {
 }
 
 .input-radio {
-    @apply flex items-center space-x-1.5
+    @apply flex items-center space-x-0.5
 }
 
 .input-radio input[type=radio] {
@@ -135,7 +154,7 @@ input[type=file] {
 }
 
 .input-radio label {
-    @apply font-medium text-slate-800 text-xs cursor-pointer
+    @apply font-medium text-slate-800 text-sm cursor-pointer select-none
 }
 
 input:not(.peer)[type=checkbox] {
@@ -151,7 +170,7 @@ input:read-only {
 }
 
 .input-box-dragable {
-    @apply relative h-[200px] flex flex-col space-y-3 justify-center items-center w-full border-2 border-slate-300 border-dashed rounded text-slate-600 font-medium text-xs
+    @apply relative h-[200px] flex flex-col space-y-3 justify-center items-center w-full border border-slate-300 border-dashed rounded-lg text-slate-600 font-medium text-xs
 }
 
 .input-box-dragable input {
@@ -159,7 +178,7 @@ input:read-only {
 }
 
 .input-thumbnail-preview {
-    @apply h-[200px] w-max rounded border-slate-200 border-2
+    @apply h-[200px] w-max rounded-lg border-slate-200 border
 }
 
 .input-label em {
@@ -231,7 +250,9 @@ input:checked + .slider:before {
 .slider:before {
     border-radius: 9px;
 }
-
+#html-editor ul {
+    @apply list-disc pl-4
+}
 /* Inputs (End) */
 
 /* Layout (Start) */
@@ -255,16 +276,41 @@ section#panel-section {
     @apply h-3 w-3 stroke-[3px] stroke-[#707EAE]
 }
 .panel-body {
-    @apply flex flex-col md:space-y-10 sm:space-y-5
+    @apply flex flex-col
 }
 /* Layout (End) */
+
+/* Notification (Start) */
+.notification-body {
+    @apply flex items-center justify-start space-x-4 px-5 py-4 bg-white hover:bg-slate-100 border-b
+}
+.notification-body .icon {
+    @apply h-[35px] w-[35px] bg-ascent rounded-full flex items-center justify-center bg-opacity-10
+}
+.notification-body .icon svg {
+    @apply h-3.5 w-3.5 stroke-ascent stroke-[2.5px]
+}
+.notification-body .content {
+    @apply space-y-0.5
+}
+.notification-body .content .title {
+    @apply md:whitespace-nowrap text-sm font-medium
+}
+.notification-body .content .time {
+    @apply md:whitespace-nowrap text-[0.65rem] text-slate-600
+}
+.notification-body .content .description {
+    @apply md:whitespace-nowrap text-[0.65rem] text-slate-600
+}
+/* Notification (End) */
+
 
 /* Sidebar (Start) */
 #sidebar {
     @apply relative
 }
 .sidebar {
-    @apply lg:sticky md:sticky sm:fixed top-0 h-screen flex flex-col justify-start shadow-xl bg-white space-y-5 overflow-y-auto lg:w-[270px] md:w-[270px] z-50 
+    @apply lg:sticky md:sticky sm:fixed top-0 h-screen flex flex-col justify-start shadow-xl bg-white space-y-5 overflow-y-auto lg:w-[270px] md:w-[270px] z-50 border-r
 }
 @media (max-width: 767px) {
     #sidebar > .sidebar {
@@ -284,7 +330,7 @@ section#panel-section {
     }   
 }
 .sidebar-tab svg {
-    @apply h-[25px] w-[20px] stroke-[1px] mb-0.5 stroke-[#A3AED0]
+    @apply h-[25px] w-[20px] stroke-[2.8px] mb-0.5 stroke-[#A3AED0]
 }
 .sidebar-tab > a {
     @apply flex space-x-2 w-full pl-7 pr-10 py-3 items-center relative font-medium text-[#A3AED0] hover:bg-complement whitespace-nowrap
@@ -302,22 +348,31 @@ section#panel-section {
     @apply flex flex-col md:space-y-10 sm:space-y-5
 }
 .panel-card {
-    @apply bg-white shadow-lg rounded-xl overflow-clip h-fit
+    @apply bg-white shadow-lg rounded-xl overflow-clip h-fit border
 }
 .panel-card-header {
-    @apply lg:p-6 sm:p-5 bg-white flex items-center justify-between border-b border-b-gray-200 rounded-t-md gap-3
+    @apply lg:p-6 sm:p-5 bg-white flex items-center justify-between border-b rounded-t-md gap-3
 }
 .panel-card-title {
-    @apply text-sm font-medium text-black
+    @apply text-base font-medium text-black
 }
 .panel-card-description {
     @apply text-[0.65rem] text-slate-500 mt-[2px]
 }
 .panel-card-body {
-    @apply lg:p-6 sm:p-5 bg-white rounded
+    @apply lg:p-6 sm:p-5
+}
+.panel-card-body .title {
+    @apply text-base font-medium text-black
+}
+.panel-card-body .title-lg {
+    @apply text-lg font-medium text-black
+}
+.panel-card-body .description {
+    @apply text-xs text-slate-500 mt-[2px]
 }
 .panel-card-footer {
-    @apply lg:p-6 sm:p-5 bg-white border-t border-t-gray-200 rounded-b-md
+    @apply lg:p-6 sm:p-5 bg-white border-t rounded-b-md
 }
 .panel-card-table {
     @apply overflow-auto
@@ -356,6 +411,9 @@ section#panel-section {
     @apply relative w-fit
 }
 .table-dropdown button {
+    @apply inline-flex w-fit justify-center items-center rounded-md border text-white px-4 py-1.5 text-xs font-medium whitespace-nowrap bg-ascent hover:bg-ascent-dark border-ascent transition duration-200 ease-in-out hover:ease-in-out
+}
+.table-btn {
     @apply inline-flex w-fit justify-center items-center rounded-md border text-white px-4 py-1.5 text-xs font-medium whitespace-nowrap bg-ascent hover:bg-ascent-dark border-ascent transition duration-200 ease-in-out hover:ease-in-out
 }
 .table-dropdown.active button {
@@ -420,7 +478,7 @@ section#panel-section {
 
 /* Sweet Alerts (Start) */
 .swal-modal {
-    @apply rounded-xl shadow-[0px_2px_25px_rgba(0,0,0,0.3)]
+    @apply rounded-xl shadow-xl border
 }
 .swal-title {
     @apply text-2xl text-black font-semibold
@@ -514,3 +572,7 @@ table.dataTable thead th, table.dataTable thead td {
     @apply md:bg-opacity-10
 }
 /* Datatables (End) */
+
+.toastify {
+    @apply bg-ascent
+}

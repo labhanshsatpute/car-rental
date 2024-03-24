@@ -2,6 +2,7 @@ import express from "express";
 import dbConnection from "../config/database";
 import cors from 'cors';
 import userRouter from '../routes/user';
+import adminRouter from '../routes/admin';
 
 require("dotenv").config();
 
@@ -16,6 +17,7 @@ app.use(cors());
 dbConnection();
 
 app.use('/api/user', userRouter);
+app.use('/api/admin', adminRouter);
 
 app.get('/', (req, res) => {
     res.send('Hello from server');

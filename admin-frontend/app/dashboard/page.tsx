@@ -1,5 +1,8 @@
 import React from 'react'
 import type { Metadata } from 'next'
+import DashboardGreetingCard from '@/components/Cards/Dashbord/DashboardGreetingCard'
+import DashboardCountCard from '@/components/Cards/Dashbord/DashboardCountCard'
+import { FaUsers } from "react-icons/fa";
 
 export const metadata: Metadata = {
   title: 'Admin Dashboard',
@@ -8,7 +11,21 @@ export const metadata: Metadata = {
 
 const Dashboard = () => {
   return (
-    <div>Dashboard</div>
+    <React.Fragment>
+      <div className="grid lg:grid-cols-3 md:grid-cols-2 sm:grid-cols-1 gap-7">
+
+        <div className='lg:col-span-3 md:col-span-2 sm:col-span-1'>
+          <DashboardGreetingCard />
+        </div>
+
+        <DashboardCountCard title={"Total Registred Users"} count={"235"} icon={<FaUsers size={35} className='fill-ascent' />} />
+
+        <DashboardCountCard title={"Total Registred Users"} count={"235"} icon={<FaUsers size={35} className='fill-ascent' />} />
+
+        <DashboardCountCard title={"Total Registred Users"} count={"235"} icon={<FaUsers size={35} className='fill-ascent' />} />
+
+      </div>
+    </React.Fragment>
   )
 }
 

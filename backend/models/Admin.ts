@@ -56,7 +56,6 @@ const adminSchema: Schema = new mongoose.Schema({
     },
     profileImage: {
         type: String,
-        required: true
     },
     passwordUpdatedAt: {
         type: Date
@@ -83,17 +82,5 @@ adminSchema.methods.generateAuthToken = (id: String) => {
 }
 
 const Admin = mongoose.model('Admin', adminSchema);
-
-const validate = (data) => {
-    const schema = joi.object({
-        name: joi.string().required().label('Name'),
-        email: joi.string().required().label('Email'),
-        phone: joi.number().required().label('Phone'),
-        gender: joi.string().required().label('Gender'),
-        role: joi.string().required().label('Role'),
-        password: joi.string().required().label('Password'),
-    });
-    return schema.validate(data);
-}
 
 export default Admin;

@@ -2,10 +2,13 @@ import React from 'react'
 import ProfileDropdown from './ProfileDropdown';
 import { FiChevronRight, FiMenu } from "react-icons/fi";
 import NotificationDropdown from './NotificationDropdown';
-
+import { useSelector } from 'react-redux';
 const Header = ({ sidebarToggle }: {
   sidebarToggle: () => void;
 }) => {
+
+  const auth = useSelector((state: any) => state.AuthReducer);
+
   return (
     <React.Fragment>
       <header className="panel-header">
@@ -35,7 +38,7 @@ const Header = ({ sidebarToggle }: {
               </div>
               <div className="flex items-center justify-center gap-2">
                 <NotificationDropdown />
-                <ProfileDropdown />
+                <ProfileDropdown auth={auth} />
               </div>
             </div>
           </figure>

@@ -8,11 +8,12 @@ interface CustomInputProps {
   label: string;
   handleChange?: (e: ChangeEvent<HTMLInputElement>) => void
   type: "text" | "number" | "datetime-local" | 'date' | 'time' | 'email' | 'password';
+  isHidden?: boolean;
 }
 
-const CustomInput = ({ type, placeHolder, value, required, name, label, handleChange }: CustomInputProps) => {
+const CustomInput = ({ type, placeHolder, value, required, name, label, handleChange, isHidden }: CustomInputProps) => {
   return (
-    <figure className='input-group'>
+    <figure className={isHidden ? 'hidden': 'input-group'}>
       <label className='input-label' htmlFor={name}>
         {label} {required && <em className='not-italic text-xs font-medium text-red-500'>*</em>}
       </label>

@@ -3,6 +3,7 @@
 import Header from "@/components/Common/Header/Header";
 import Sidebar from "@/components/Common/Sidebar/Sidebar"
 import React, { useState } from 'react';
+import { useSelector } from 'react-redux';
 
 export default function DashboardLayout({
   children,
@@ -11,6 +12,12 @@ export default function DashboardLayout({
 }) {
 
   const [sidebarState, setSidebarState] = useState(false);
+
+  const auth = useSelector((state: any) => state.AuthReducer);
+
+  if (!auth) {
+    return "Loading...";
+  } 
 
   return (
     <React.Fragment>

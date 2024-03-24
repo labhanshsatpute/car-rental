@@ -4,8 +4,30 @@ import Link from 'next/link';
 import React from 'react'
 import { FiSettings, FiLogOut } from "react-icons/fi";
 import { Menu, Transition } from '@headlessui/react'
+import { useRouter } from 'next/navigation';
+import { deleteCookie } from 'cookies-next';
+import { useDispatch } from 'react-redux';
+import { AuthUserLogout } from '@/redux/actions/AuthAction';
 
-const ProfileDropdown = () => {
+const ProfileDropdown = ({ auth }: {
+  auth: {
+    name: string,
+    email: string
+  }
+}) => {
+
+  const router = useRouter();
+
+  const dispatch = useDispatch();
+
+  const handleLogout = () => {
+    if (confirm('Are you sure to logout')) {
+      dispatch(AuthUserLogout());
+      deleteCookie('accessToken');
+      router.push('/auth/login');
+    }
+  }
+
   return (
     <React.Fragment>
       <div className="relative">
@@ -27,8 +49,8 @@ const ProfileDropdown = () => {
                   <img src="#" alt="profile" className="h-full w-full" />
                 </div>
                 <div className="whitespace-nowrap text-left space-y-0.5">
-                  <h1 className="font-semibold text-base">Labhansh Satpute</h1>
-                  <h1 className="text-slate-700 text-[0.65rem]">labhansh25@gmail.com</h1>
+                  <h1 className="font-semibold text-base">{auth.name}</h1>
+                  <h1 className="text-slate-700 text-[0.65rem]">{auth.email}</h1>
                 </div>
               </button>
               <hr />
@@ -41,11 +63,11 @@ const ProfileDropdown = () => {
                   </a>
                 </li>
                 <li>
-                  <a href="#"
+                  <button onClick={() => handleLogout()}
                     className="text-sm font-medium text-slate-600 hover:text-ascent whitespace-nowrap flex items-center justify-start">
                     <span className="mr-2"><FiLogOut size={17} strokeWidth={2.5} /></span>
                     <span>Logout</span>
-                  </a>
+                  </button>
                 </li>
               </ul>
             </Menu.Items>

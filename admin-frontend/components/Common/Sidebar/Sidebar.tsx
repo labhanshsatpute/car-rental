@@ -1,6 +1,8 @@
+"use client"
+
 import Link from 'next/link';
 import React from 'react'
-import { FiHome, FiSettings, FiChevronLeft } from "react-icons/fi";
+import { FiHome, FiSettings, FiChevronLeft, FiUsers } from "react-icons/fi";
 
 const SidebarTab = ({ label, link, icon, isActive }: {
   label: String;
@@ -11,7 +13,7 @@ const SidebarTab = ({ label, link, icon, isActive }: {
   return (
     <React.Fragment>
       <li className={`sidebar-tab ${isActive ? 'active' : null }`} >
-        <Link href={"/dashboard"}>
+        <Link href={link}>
           <span>{icon}</span>
           <span>{label}</span>
         </Link>
@@ -24,6 +26,7 @@ const Sidebar = ({ state, sidebarToggle }: {
   state: Boolean;
   sidebarToggle: () => void;
 }) => {
+
   return (
     <React.Fragment>
       <aside id="sidebar" className={state ? 'active' : ''}>
@@ -46,6 +49,7 @@ const Sidebar = ({ state, sidebarToggle }: {
             <ul className="flex flex-col pb-10">
 
               <SidebarTab label={"Dashboard"} link={"/dashboard"} icon={<FiHome />} isActive={true} />
+              <SidebarTab label={"Users"} link={"/dashboard/user"} icon={<FiUsers />} isActive={false} />
               <SidebarTab label={"Setting"} link={"/setting"} icon={<FiSettings />} isActive={false} />
 
             </ul>

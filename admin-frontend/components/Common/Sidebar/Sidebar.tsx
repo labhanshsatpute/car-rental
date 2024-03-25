@@ -6,7 +6,7 @@ import { FiHome, FiSettings, FiChevronLeft, FiUsers } from "react-icons/fi";
 
 const SidebarTab = ({ label, link, icon, isActive }: {
   label: String;
-  link: String;
+  link: any;
   icon: JSX.Element;
   isActive: Boolean;
 }) => {

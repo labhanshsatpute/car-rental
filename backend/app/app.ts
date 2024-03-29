@@ -10,14 +10,14 @@ const port: number = 8000;
 
 const app = express();
 
+dbConnection();
+
 app.use(express.json());
 app.use(express.urlencoded());
 app.use(cors());
-
-dbConnection();
-
 app.use('/api/user', userRouter);
 app.use('/api/admin', adminRouter);
+app.use('/storage', express.static('storage'));
 
 app.get('/', (req, res) => {
     res.send('Hello from server');

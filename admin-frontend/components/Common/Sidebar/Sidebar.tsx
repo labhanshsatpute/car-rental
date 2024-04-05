@@ -50,6 +50,7 @@ const Sidebar = ({ state, sidebarToggle }: {
 
               <SidebarTab label={"Dashboard"} link={"/dashboard"} icon={<FiHome />} isActive={true} />
               <SidebarTab label={"Users"} link={"/dashboard/user"} icon={<FiUsers />} isActive={false} />
+              <SidebarTab label={"Brands"} link={"/dashboard/brand"} icon={<FiUsers />} isActive={false} />
               <SidebarTab label={"Setting"} link={"/setting"} icon={<FiSettings />} isActive={false} />
 
             </ul>

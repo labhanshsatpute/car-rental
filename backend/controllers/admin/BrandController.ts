@@ -12,15 +12,50 @@ class BrandController {
 
             const data = vehicleBrands.map((item) => {
                 return {
-                  name: item.name,
-                  slug: item.slug,
-                  logo_url: `${storageBaseUrl}/${item.logo}`
+                    _id: item._id,
+                    name: item.name,
+                    slug: item.slug,
+                    logo_url: `${storageBaseUrl}/${item.logo}`
                 };
             });
 
             return res.status(200).send({
                 status: true,
                 message: "Vehicel brand successfully created",
+                data: data
+            });
+            
+        } catch (error) {
+            return res.status(500).send({
+                status: false,
+                message: "Internal server error",
+                error: error
+            });
+        }
+    }
+
+    static async handleGetIndividualBrand(req: Request, res: Response) {
+        try {
+            
+            const vehicleBrand = await VehicleBrand.findOne({ _id: req.params.id , deletedAt: null });
+            if (!vehicleBrand) {
+                return res.status(200).send({
+                    status: false,
+                    message: "Vehicle brand not found with specified id",
+                    data: null
+                });
+            }
+
+            const data = {
+                _id: vehicleBrand._id,
+                name: vehicleBrand.name,
+                slug: vehicleBrand.slug,
+                logo_url: `${storageBaseUrl}/${vehicleBrand.logo}`
+            };
+
+            return res.status(200).send({
+                status: true,
+                message: "Vehicel brand successfully fetched",
                 data: data
             });
             
@@ -59,6 +94,56 @@ class BrandController {
             return res.status(201).send({
                 status: true,
                 message: "Vehicel brand successfully created",
+                data: vehicleBrand
+            });
+            
+        } catch (error) {
+            return res.status(500).send({
+                status: false,
+                message: "Internal server error",
+                error: error
+            });
+        }
+    }
+
+    static async handleUpdateBrand(req: Request, res: Response) {
+        try {
+            
+            const data = joi.object({
+                name: joi.string().required().min(1).max(250).label('Name'),
+                slug: joi.string().required().min(1).max(250).label('Slug'),
+            });
+
+            const { error } = data.validate(req.body);
+            if (error) {
+                return res.status(200).send({
+                    status: false,
+                    message: error.details[0].message,
+                    data: error.details
+                });
+            }
+            
+            const brand = await VehicleBrand.findById(req.params.id);
+
+            if (!brand) {
+                return res.status(200).send({
+                    status: false,
+                    message: "Vehicle brand not found with specified id",
+                    data: null
+                });
+            }
+
+            const vehicleBrand = await VehicleBrand.findOneAndUpdate({
+                _id: brand._id
+            }, {
+                name: req.body.name,
+                slug: req.body.slug,
+                logo: req.file ? req.file?.path : brand.logo
+            });
+
+            return res.status(201).send({
+                status: true,
+                message: "Changes successfully saved",
                 data: vehicleBrand
             });
             

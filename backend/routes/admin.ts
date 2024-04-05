@@ -16,6 +16,8 @@ router.get('/', Auth.authorizeAdmin, AuthController.handleAuthorizedAdmin);
 router.get('/user', Auth.authorizeAdmin, UserController.handleGetUser);
 
 router.get('/brand', Auth.authorizeAdmin, BrandController.handleGetBrand);
+router.get('/brand/:id', Auth.authorizeAdmin, BrandController.handleGetIndividualBrand);
 router.post('/brand', Auth.authorizeAdmin, upload.single('logo'), BrandController.handleCreateBrand);
+router.put('/brand/:id', Auth.authorizeAdmin, upload.single('logo'), BrandController.handleUpdateBrand);
 
 export default router;

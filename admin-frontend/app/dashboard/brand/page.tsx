@@ -1,9 +1,11 @@
 "use client"
 
-import { getBrands } from '@/services/brand';
+import { getBrands, deleteBrand } from '@/services/brand';
 import Link from 'next/link';
 import React, { useEffect, useState } from 'react'
 import DataTable from 'react-data-table-component';
+import { FiEdit, FiTrash } from "react-icons/fi";
+import { toast } from 'sonner';
 
 const Brand = () => {
   
@@ -19,6 +21,19 @@ const Brand = () => {
   useEffect(() => {
     fetchUser();
   }, []);
+
+  const handleDeleteBrand = async (id: any) => {
+    if (confirm('Are you sure to delete this brand ?')) {
+      const data: any = await deleteBrand(id);
+      if (data.status) {
+        fetchUser();
+        toast.success(data.message);
+      }
+      else {
+        toast.error(data.message);
+      }
+    }
+  }
 
   const columns = [
       {
@@ -42,9 +57,14 @@ const Brand = () => {
           sortable: true,
       },
       {
-          name: 'Slug',
-          selector: (row: any) => <Link href={`/dashboard/brand/edit/${row._id}`}>Edit Brand</Link>,
-          sortable: true,
+          name: 'Actions',
+          selector: (row: any) => <div className='flex items-center justify-center space-x-5'>
+            <Link href={`/dashboard/brand/edit/${row._id}`} className='font-medium text-ascent flex items-center justify-center space-x-1.5'><FiEdit strokeWidth={3} /> <span>Edit</span></Link>
+            <button onClick={() => handleDeleteBrand(row._id)} className='font-medium text-red-500 flex items-center justify-center space-x-1.5'>
+              <FiTrash strokeWidth={3} /> <span>Delete</span>
+            </button>
+          </div>,
+          sortable: false,
       },
     ];
 

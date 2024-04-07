@@ -2,6 +2,7 @@ import { Request, Response } from "express";
 import joi from "joi";
 import VehicleBrand from '../../models/VehicleBrand';
 import { storageBaseUrl } from "../../config/storage";
+import fs from 'node:fs';
 
 class BrandController {
 
@@ -133,6 +134,16 @@ class BrandController {
                 });
             }
 
+            if (req.file) {
+                fs.unlink(brand.logo, (err) => {
+                    if (err) {
+                      console.error(err);
+                      return;
+                    }
+                    console.log('File deleted successfully!');
+                });
+            }
+
             const vehicleBrand = await VehicleBrand.findOneAndUpdate({
                 _id: brand._id
             }, {
@@ -145,6 +156,44 @@ class BrandController {
                 status: true,
                 message: "Changes successfully saved",
                 data: vehicleBrand
+            });
+            
+        } catch (error) {
+            return res.status(500).send({
+                status: false,
+                message: "Internal server error",
+                error: error
+            });
+        }
+    }
+
+    static async handleDeleteBrand(req: Request, res: Response) {
+        try {
+            
+            const brand = await VehicleBrand.findById(req.params.id);
+
+            if (!brand) {
+                return res.status(200).send({
+                    status: false,
+                    message: "Vehicle brand not found with specified id",
+                    data: null
+                });
+            }
+            
+            fs.unlink(brand.logo, (err) => {
+                if (err) {
+                  console.error(err);
+                  return;
+                }
+                console.log('File deleted successfully!');
+            });
+
+            await VehicleBrand.findOneAndDelete({ _id: brand._id });
+
+            return res.status(201).send({
+                status: true,
+                message: "Brand successfully deleted",
+                data: null
             });
             
         } catch (error) {

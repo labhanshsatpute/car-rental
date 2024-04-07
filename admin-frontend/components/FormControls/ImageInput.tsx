@@ -19,7 +19,7 @@ const ImageInput = ({ required, name, label, handleChange, thumbnailPath }: Cust
       <label className='input-label' htmlFor={name}>
         {label} {required && <em className='not-italic text-xs font-medium text-red-500'>*</em>}
       </label>
-      <div className="flex space-x-3 my-2">
+      <div className="flex lg:flex-row md:flex-row sm:flex-col gap-3 my-2">
         <div className="input-box-dragable">
             <input type="file" accept="image/jpeg, image/jpg, image/png, image/webp" onChange={handleChange} name={name} required={required} />
             <FiUploadCloud size={30} />

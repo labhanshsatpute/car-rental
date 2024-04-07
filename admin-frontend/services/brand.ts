@@ -78,3 +78,18 @@ export const editBrand = async (id: any ,data: {
         return false;
     }
 }
+
+export const deleteBrand = async (id: any) => {
+    try {
+        
+        const response = axios.delete(`${process.env.NEXT_PUBLIC_API_BASE_URL}/admin/brand/${id}`, {
+            headers: {
+                'Authorization': `Bearer ${getCookie('accessToken')}`
+            },
+        });
+        return (await response).data;
+        
+    } catch (error) {
+        return false;
+    }
+}

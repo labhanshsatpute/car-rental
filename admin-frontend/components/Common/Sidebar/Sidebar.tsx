@@ -1,6 +1,7 @@
 "use client"
 
 import Link from 'next/link';
+import { usePathname } from 'next/navigation';
 import React from 'react'
 import { FiHome, FiSettings, FiChevronLeft, FiUsers } from "react-icons/fi";
 
@@ -27,6 +28,11 @@ const Sidebar = ({ state, sidebarToggle }: {
   sidebarToggle: () => void;
 }) => {
 
+  const pathname = usePathname();
+
+  console.log(pathname);
+  
+
   return (
     <React.Fragment>
       <aside id="sidebar" className={state ? 'active' : ''}>
@@ -48,10 +54,10 @@ const Sidebar = ({ state, sidebarToggle }: {
             <hr className="border-complement" />
             <ul className="flex flex-col pb-10">
 
-              <SidebarTab label={"Dashboard"} link={"/dashboard"} icon={<FiHome />} isActive={true} />
-              <SidebarTab label={"Users"} link={"/dashboard/user"} icon={<FiUsers />} isActive={false} />
-              <SidebarTab label={"Brands"} link={"/dashboard/brand"} icon={<FiUsers />} isActive={false} />
-              <SidebarTab label={"Setting"} link={"/setting"} icon={<FiSettings />} isActive={false} />
+              <SidebarTab label={"Dashboard"} link={"/dashboard"} icon={<FiHome />} isActive={pathname == "/dashboard"} />
+              <SidebarTab label={"Users"} link={"/dashboard/user"} icon={<FiUsers />} isActive={pathname.includes("/dashboard/user")} />
+              <SidebarTab label={"Brands"} link={"/dashboard/brand"} icon={<FiUsers />} isActive={pathname.includes("/dashboard/brand")} />
+              <SidebarTab label={"Setting"} link={"/dashboard/setting"} icon={<FiSettings />} isActive={pathname.includes("/dashboard/setting")} />
 
             </ul>
           </div>

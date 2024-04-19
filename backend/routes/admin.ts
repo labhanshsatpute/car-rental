@@ -4,6 +4,7 @@ import Auth from '../middlewares/Auth';
 import UserController from '../controllers/admin/UserController';
 import BrandController from '../controllers/admin/BrandController';
 import { upload } from '../config/storage';
+import VehicleController from '../controllers/admin/VehicleController';
 
 const router: Router = express.Router();
 
@@ -20,5 +21,19 @@ router.get('/brand/:id', Auth.authorizeAdmin, BrandController.handleGetIndividua
 router.post('/brand', Auth.authorizeAdmin, upload.single('logo'), BrandController.handleCreateBrand);
 router.put('/brand/:id', Auth.authorizeAdmin, upload.single('logo'), BrandController.handleUpdateBrand);
 router.delete('/brand/:id', Auth.authorizeAdmin, BrandController.handleDeleteBrand);
+
+router.get('/vehicle', Auth.authorizeAdmin, VehicleController.handleGetAllVehicle);
+router.get('/vehicle/:id', Auth.authorizeAdmin, VehicleController.handleGetIndividualVehicle);
+router.post('/vehicle', Auth.authorizeAdmin, 
+    upload.fields([
+        {
+            name: 'thumbnailImage',
+            maxCount: 1,
+        },
+        {
+            name: 'vehicleImages',
+            maxCount: 100
+        }
+    ]), VehicleController.handleCreateVehicle);
 
 export default router;

@@ -7,7 +7,7 @@ interface CustomInputProps {
   name: string;
   label: string;
   handleChange?: (e: ChangeEvent<HTMLInputElement>) => void
-  type: "text" | "number" | "datetime-local" | 'date' | 'time' | 'email' | 'password';
+  type: "text" | "number" | "datetime-local" | 'date' | 'time' | 'email' | 'password' | 'month';
   isHidden?: boolean;
 }
 

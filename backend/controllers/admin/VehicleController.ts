@@ -42,6 +42,7 @@ class VehicleController {
                         transmissionType: 1,
                         seatingCapacity: 1,
                         manufacturingYear: 1,
+                        mileage: 1,
                         price: 1,
                         priceUnit: 1,
                         location: 1,
@@ -139,10 +140,10 @@ class VehicleController {
                 engineType: joi.string().required().valid(...Object.values(EngineType)).label('Engine Type'),
                 transmissionType: joi.string().required().valid(...Object.values(TransmissionType)).label('Transmission Type'),
                 seatingCapacity: joi.number().required().min(1).max(100).label('Seating Capacity'),
-                manufacturingYear: joi.number().required().label('Manufacturing Year'),
+                manufacturingYear: joi.string().required().label('Manufacturing Year'),
+                mileage: joi.string().required().min(1).max(250).label('Mileage'),
                 price: joi.number().required().label('Price'),
                 priceUnit: joi.string().required().valid(...Object.values(PriceUnit)).label('Price Unit'),
-
                 latitude: joi.string().required().min(1).max(250).label('Latitude'),
                 longitude: joi.string().required().min(1).max(250).label('Longitude'),
             });

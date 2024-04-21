@@ -1,9 +1,10 @@
 "use client";
 
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { Tab } from '@headlessui/react'
 import { VehicalCard } from '@/components';
 import { Poppins } from 'next/font/google'
+import { getAllVehicles } from '@/services/vehicle';
 
 const poppins = Poppins({ weight: '600', subsets: ['latin-ext'] })
 
@@ -11,6 +12,20 @@ const poppins = Poppins({ weight: '600', subsets: ['latin-ext'] })
 const Catalogue = () => {
 
   const categories = ["Sedan","SUV","Hatchback"];
+
+  const [vehicles, setVehicles] = useState([]);
+
+  const fetchVehicles = async () => {
+    const data = await getAllVehicles();
+    console.log(data);
+    if (data.status) {
+      setVehicles(data.data);
+    }
+  }
+
+  useEffect(() => {
+    fetchVehicles();
+  },[]);
 
   return (
     <section className='relative'>
@@ -32,9 +47,8 @@ const Catalogue = () => {
           <Tab.Panels>
             <Tab.Panel>
               <div className='grid lg:grid-cols-3 md:grid-cols-2 sm:grid-cols-1 gap-7'>
-                <VehicalCard />
-                <VehicalCard />
-                <VehicalCard />
+                {vehicles.map((item, index) => <VehicalCard key={index} data={item} /> )}
+                
               </div>
             </Tab.Panel>
             <Tab.Panel>Content 2</Tab.Panel>

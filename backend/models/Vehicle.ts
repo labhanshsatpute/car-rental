@@ -57,6 +57,10 @@ const vehicleSchema: Schema = new mongoose.Schema({
         type: Schema.Types.Decimal128,
         required: true
     },
+    mileage: {
+        type: Number,
+        required: true
+    },
     priceUnit: {
         type: String,
         enum: Object.values(PriceUnit),

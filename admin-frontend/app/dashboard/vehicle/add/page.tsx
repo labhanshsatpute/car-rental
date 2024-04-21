@@ -22,6 +22,7 @@ const AddVehicle = () => {
     transmissionType: '',
     seatingCapacity: '',
     manufacturingYear: '',
+    mileage: '',
     price: '',
     priceUnit: '',
     latitude: '',
@@ -140,7 +141,9 @@ const AddVehicle = () => {
               
               <CustomInput type='text' name='seatingCapacity' value={inputFields.seatingCapacity} label='Seating Capacity' placeHolder='Enter Seating Capacity' handleChange={(event) => handleInputChange(event)} required={true} />
               
-              <CustomInput type='text' name='manufacturingYear' value={inputFields.manufacturingYear} label='Manufacturing Year' placeHolder='Enter Manufacturing Year' handleChange={(event) => handleInputChange(event)} required={true} />
+              <CustomInput type='month' name='manufacturingYear' value={inputFields.manufacturingYear} label='Manufacturing Year' placeHolder='Enter Manufacturing Year' handleChange={(event) => handleInputChange(event)} required={true} />
+              
+              <CustomInput type='text' name='mileage' value={inputFields.mileage} label='Mileage (KMPL)' placeHolder='Enter Mileage (KMPL)' handleChange={(event) => handleInputChange(event)} required={true} />
 
               <div className='lg:col-span-4 md:col-span-3 sm:col-span-1'>
                 <br />
@@ -169,9 +172,9 @@ const AddVehicle = () => {
                 <ImageInput multiple={false} thumbnailPath={imagePlaceholders.thumbnailImageUrl} handleChange={(event) => handleThumbnailInputChange(event)} value={inputFields.thumbnailImage} required={true} name='thumbnailImage' label='Thumbnail Image' />
               </div>
 
-              <div className='lg:col-span-4 md:col-span-3 sm:col-span-1'>
+              {/* <div className='lg:col-span-4 md:col-span-3 sm:col-span-1'>
                 <ImageInput multiple={true} thumbnailPath={imagePlaceholders.thumbnailImageUrl} handleChange={(event) => handleMediaInputChange(event)} value={inputFields.vehicleImages} required={true} name='vehicleImages' label='Other Media Image' />
-              </div>
+              </div> */}
 
             </div>
           </div>

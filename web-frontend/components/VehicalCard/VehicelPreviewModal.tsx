@@ -13,9 +13,29 @@ import { BsArrowRightShort } from "react-icons/bs";
 interface VehicelPreviewModalProps {
   isOpen: boolean;
   closeModal: () => void;
+  data: {
+    name: string;
+    summary: string;
+    thumbnailImageUrl: string
+    type: string
+    fuelType: string
+    engineType: string
+    transmissionType: string
+    seatingCapacity: number
+    manufacturingYear: string
+    price: {
+      $numberDecimal: number
+    }
+    mileage: number
+    priceUnit: string
+    brand: {
+      name: string,
+      logo: string
+    }
+  }
 }
 
-const VehicelPreviewModal = ({ isOpen, closeModal }: VehicelPreviewModalProps) => {
+const VehicelPreviewModal = ({ isOpen, closeModal, data }: VehicelPreviewModalProps) => {
   return (
     <React.Fragment>
       <Transition appear as={Fragment} show={isOpen} >
@@ -54,9 +74,9 @@ const VehicelPreviewModal = ({ isOpen, closeModal }: VehicelPreviewModalProps) =
                   <div className='lg:space-y-5 sm:space-y-4'>
                     <div className='space-y-3'>
                       <div className='border rounded-lg'>
-                        <Image src={"/images/porsche-panamera.png?v=1"} alt='vehical-image' height={200} width={300} className='object-contain w-full' />
+                        <img src={data.thumbnailImageUrl} alt='vehical-image' height={200} width={300} className='object-contain w-full' />
                       </div>
-                      <div className='grid grid-cols-3 gap-3'>
+                      {/* <div className='grid grid-cols-3 gap-3'>
                         <div className='border rounded'>
                           <Image src={"/images/porsche-panamera.png?v=1"} alt='vehical-image' height={200} width={300} className='object-contain w-full' />
                         </div>
@@ -66,37 +86,37 @@ const VehicelPreviewModal = ({ isOpen, closeModal }: VehicelPreviewModalProps) =
                         <div className='border rounded'>
                           <Image src={"/images/porsche-panamera.png?v=1"} alt='vehical-image' height={200} width={300} className='object-contain w-full' />
                         </div>
-                      </div>
+                      </div> */}
                     </div>
                     <div className='space-y-4'>
                       <div className='flex items-center justify-start space-x-3'>
                         <div>
-                          <Image src={"/images/porsche.png"} alt='brand-logo' height={60} width={30} className='object-contain' />
+                          <img src={`${process.env.NEXT_PUBLIC_STORAGE_BASE_URL}/${data.brand.logo}`} alt='brand-logo' height={60} width={30} className='object-contain' />
                         </div>
                         <div className='space-y-[1px]'>
-                          <h1 className='font-semibold text-sm'>Porsche Panamera GT</h1>
-                          <h1 className='text-[0.7rem] text-gray-500'>2 Seater - Year 2020</h1>
+                          <h1 className='font-semibold text-sm'>{data.name}</h1>
+                          <h1 className='text-[0.7rem] text-gray-500'>{data.seatingCapacity} Seater - Year {data.manufacturingYear}</h1>
                         </div>
                       </div>
                       <div>
-                        <h1 className='font-semibold text-xl text-ascent-dark'>$300.00<span className='text-sm font-normal text-gray-600'>/Hour</span> </h1>
+                        <h1 className='font-semibold text-xl text-ascent-dark'>{process.env.NEXT_PUBLIC_APP_CURRENCY}{data.price.$numberDecimal}<span className='text-sm font-normal text-gray-600 capitalize'>/{data.priceUnit.toLowerCase()}</span> </h1>
                       </div>
                       <div className='flex items-center space-x-4'>
                         <div className='flex space-x-2 items-center'>
                           <PiSteeringWheelFill size={16} className='fill-green-600' />
-                          <span className='text-xs text-gray-600'>Automatic</span>
+                          <span className='text-xs text-gray-600 capitalize'>{data.transmissionType.toLowerCase()}</span>
                         </div>
                         <div className='flex space-x-2 items-center'>
                           <BsFuelPumpFill size={15} className='fill-orange-500' />
-                          <span className='text-xs text-gray-600'>Petrol</span>
+                          <span className='text-xs text-gray-600 capitalize'>{data.fuelType.toLowerCase()}</span>
                         </div>
                         <div className='flex space-x-2 items-center'>
                           <GiCartwheel size={15} className='fill-violet-500' />
-                          <span className='text-xs text-gray-600'>25/KMPL</span>
+                          <span className='text-xs text-gray-600'>{data.mileage}Kmpl</span>
                         </div>
                       </div>
                       <div>
-                        <p className='text-gray-500 text-xs leading-normal'>Lorem ipsum dolor sit amet consectetur adipisicing elit. Autem, molestiae culpa officiis mollitia nesciunt cumque laboriosam repellat atque ut quam necessitatibus, esse iusto sit nobis! Quis tenetur repellendus cum saepe?</p>
+                        <p className='text-gray-500 text-xs leading-normal'>{data.summary}</p>
                       </div>
                       <div className='grid grid-cols-2 gap-4'>
                         <div className='col-span-2'>

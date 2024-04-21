@@ -43,6 +43,7 @@ export const addVehicle = async (data: {
     transmissionType: string
     seatingCapacity: string
     manufacturingYear: string
+    mileage: string
     price: string
     priceUnit: string
     latitude: string

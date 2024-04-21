@@ -8,22 +8,19 @@ class BrandController {
 
     static async handleGetBrand(req: Request, res: Response) {
         try {
-            
-            const vehicleBrands = await VehicleBrand.find({ deletedAt: null });
 
-            const data = vehicleBrands.map((item) => {
-                return {
-                    _id: item._id,
-                    name: item.name,
-                    slug: item.slug,
-                    logo_url: `${storageBaseUrl}/${item.logo}`
-                };
-            });
+            const vehicleBrands = await VehicleBrand.aggregate([
+                {
+                    $addFields: {
+                        logo_url: { $concat: [process.env.APP_URL + "/", "$logo"] },
+                    }
+                }
+            ]);
 
             return res.status(200).send({
                 status: true,
                 message: "Vehicel brand successfully created",
-                data: data
+                data: vehicleBrands
             });
             
         } catch (error) {

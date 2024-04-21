@@ -167,13 +167,15 @@ class VehicleController {
                 }
             }).save();
 
-            files.vehicleImages.forEach(async (vehicleMedia) => {
-                await new VehicleMedia({
-                    vehicleId: vehicle._id,
-                    type: vehicleMedia.mimetype,
-                    path: vehicleMedia.path
-                }).save();
-            });
+            if (files.vehicleImages) {
+                files.vehicleImages.forEach(async (vehicleMedia) => {
+                    await new VehicleMedia({
+                        vehicleId: vehicle._id,
+                        type: vehicleMedia.mimetype,
+                        path: vehicleMedia.path
+                    }).save();
+                });
+            }
 
             return res.status(201).send({
                 status: true,
@@ -181,6 +183,44 @@ class VehicleController {
                 data: vehicle
             });
 
+        } catch (error) {
+            return res.status(500).send({
+                status: false,
+                message: "Internal server error",
+                error: error
+            });
+        }
+    }
+
+    static async handleDeleteVehicle(req: Request, res: Response) {
+        try {
+            
+            const vehicle = await Vehicle.findById(req.params.id);
+
+            if (!vehicle) {
+                return res.status(200).send({
+                    status: false,
+                    message: "Vehicle not found with specified id",
+                    data: null
+                });
+            }
+            
+            fs.unlink(vehicle.thumbnailImage, (err) => {
+                if (err) {
+                  console.error(err);
+                  return;
+                }
+                console.log('File deleted successfully!');
+            });
+
+            await Vehicle.findOneAndDelete({ _id: vehicle._id });
+
+            return res.status(201).send({
+                status: true,
+                message: "Vehicle successfully deleted",
+                data: null
+            });
+            
         } catch (error) {
             return res.status(500).send({
                 status: false,

@@ -35,5 +35,6 @@ router.post('/vehicle', Auth.authorizeAdmin,
             maxCount: 100
         }
     ]), VehicleController.handleCreateVehicle);
+router.delete('/vehicle/:id', Auth.authorizeAdmin, VehicleController.handleDeleteVehicle);
 
 export default router;

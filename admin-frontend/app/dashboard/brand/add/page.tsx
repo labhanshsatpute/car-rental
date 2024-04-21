@@ -67,7 +67,7 @@ const CreateBrand = () => {
             <CustomInput type='text' name='slug' value={inputFields.slug} label='Slug' placeHolder='Enter Slug' handleChange={(event) => handleInputChange(event)} required={true} />
 
             <div className='lg:col-span-2 md:col-span-2 sm:col-span-1'>
-              <ImageInput thumbnailPath={inputFields.logo_url} handleChange={(event) => handleFileInputChange(event)} value={inputFields.logo} required={true} name='logo' label='Brand Logo' />
+              <ImageInput multiple={false} thumbnailPath={inputFields.logo_url} handleChange={(event) => handleFileInputChange(event)} value={inputFields.logo} required={true} name='logo' label='Brand Logo' />
             </div>
 
           </div>  

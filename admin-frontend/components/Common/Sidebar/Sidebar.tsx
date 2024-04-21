@@ -29,10 +29,7 @@ const Sidebar = ({ state, sidebarToggle }: {
 }) => {
 
   const pathname = usePathname();
-
-  console.log(pathname);
   
-
   return (
     <React.Fragment>
       <aside id="sidebar" className={state ? 'active' : ''}>
@@ -57,6 +54,7 @@ const Sidebar = ({ state, sidebarToggle }: {
               <SidebarTab label={"Dashboard"} link={"/dashboard"} icon={<FiHome />} isActive={pathname == "/dashboard"} />
               <SidebarTab label={"Users"} link={"/dashboard/user"} icon={<FiUsers />} isActive={pathname.includes("/dashboard/user")} />
               <SidebarTab label={"Brands"} link={"/dashboard/brand"} icon={<FiUsers />} isActive={pathname.includes("/dashboard/brand")} />
+              <SidebarTab label={"Vehicles"} link={"/dashboard/vehicle"} icon={<FiUsers />} isActive={pathname.includes("/dashboard/vehicle")} />
               <SidebarTab label={"Setting"} link={"/dashboard/setting"} icon={<FiSettings />} isActive={pathname.includes("/dashboard/setting")} />
 
             </ul>

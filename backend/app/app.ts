@@ -3,6 +3,7 @@ import dbConnection from "../config/database";
 import cors from 'cors';
 import userRouter from '../routes/user';
 import adminRouter from '../routes/admin';
+import guestRouter from '../routes/guest';
 
 require("dotenv").config();
 
@@ -15,6 +16,8 @@ dbConnection();
 app.use(express.json());
 app.use(express.urlencoded());
 app.use(cors());
+
+app.use('/api', guestRouter);
 app.use('/api/user', userRouter);
 app.use('/api/admin', adminRouter);
 app.use('/storage', express.static('storage'));

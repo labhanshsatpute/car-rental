@@ -66,16 +66,25 @@ export const addVehicle = async (data: {
 
 export const editVehicle = async (id: any ,data: {
     name: string
-    slug: string
-    logo: Object
+    summary: string
+    thumbnailImage: Object
+    vehicleImages: Array<Object>
+    brandId: string
+    type: string
+    fuelType: string
+    engineType: string
+    transmissionType: string
+    seatingCapacity: string
+    manufacturingYear: string
+    mileage: string
+    price: string
+    priceUnit: string
+    latitude: string
+    longitude: string
 }) => {
     try {
         
-        const response = axios.put(`${process.env.NEXT_PUBLIC_API_BASE_URL}/admin/vehicle/${id}`, {
-            name: data.name,
-            slug: data.slug,
-            logo: data.logo,
-        }, {
+        const response = axios.put(`${process.env.NEXT_PUBLIC_API_BASE_URL}/admin/vehicle/${id}`, data, {
             headers: {
                 'Authorization': `Bearer ${getCookie('accessToken')}`,
                 'Content-Type': 'multipart/form-data'

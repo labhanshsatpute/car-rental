@@ -11,7 +11,7 @@ const Vehicles = () => {
   
   const [vehicles, setVehicles] = useState([]);
 
-  const fetchUser = async () => {
+  const fetchVehicles = async () => {
     const data = await getAllVehicles();
     if (data.status) {
       setVehicles(data.data);
@@ -19,14 +19,14 @@ const Vehicles = () => {
   }
 
   useEffect(() => {
-    fetchUser();
+    fetchVehicles();
   }, []);
 
   const handleDeleteVehicle = async (id: any) => {
     if (confirm('Are you sure to delete this vehicle ?')) {
       const data: any = await deleteVehicle(id);
       if (data.status) {
-        fetchUser();
+        fetchVehicles();
         toast.success(data.message);
       }
       else {
@@ -69,7 +69,7 @@ const Vehicles = () => {
       {
           name: 'Actions',
           selector: (row: any) => <div className='flex items-center justify-center space-x-5'>
-            <Link href={`/dashboard/brand/edit/${row._id}`} className='font-medium text-ascent flex items-center justify-center space-x-1.5'><FiEdit strokeWidth={3} /> <span>Edit</span></Link>
+            <Link href={`/dashboard/vehicle/edit/${row._id}`} className='font-medium text-ascent flex items-center justify-center space-x-1.5'><FiEdit strokeWidth={3} /> <span>Edit</span></Link>
             <button onClick={() => handleDeleteVehicle(row._id)} className='font-medium text-red-500 flex items-center justify-center space-x-1.5'>
               <FiTrash strokeWidth={3} /> <span>Delete</span>
             </button>

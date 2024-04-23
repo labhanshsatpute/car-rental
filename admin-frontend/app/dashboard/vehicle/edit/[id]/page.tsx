@@ -3,12 +3,14 @@
 import { CustomButton, CustomInput, CustomSelect, ImageInput } from '@/components'
 import { EngineType, FuelType, PriceUnit, TransmissionType, VehicleType } from '@/constants/vehicleConstant';
 import { getBrands } from '@/services/brand';
-import { addVehicle } from '@/services/vehicle';
-import { useRouter } from 'next/navigation';
+import { addVehicle, editVehicle, getIndividualVehicle } from '@/services/vehicle';
+import { useParams, useRouter } from 'next/navigation';
 import React, { ChangeEvent, FormEvent, useEffect, useState } from 'react'
 import { toast } from 'sonner';
 
-const AddVehicle = () => {
+const EditVehicle = () => {
+
+  const params = useParams();
 
   const defaultState = {
     name: '',
@@ -50,8 +52,31 @@ const AddVehicle = () => {
     }
   }
 
+  const fetchVehicle = async () => {
+    const data = await getIndividualVehicle(params.id);
+    if (data.status) {
+      
+      const { price, location, thumbnailImageUrl } = data.data;
+      delete data.data['_id'];
+      delete data.data['location'];
+
+      setImagePlaceholders({ ...imagePlaceholders, ['thumbnailImageUrl']: thumbnailImageUrl });
+
+      delete data.data['thumbnailImageUrl'];
+      
+      setInputFields({...data.data, 
+        ['price']: price.$numberDecimal,
+        ['latitude']: location.latitude,
+        ['longitude']: location.latitude,
+        ['thumbnailImage']: {},
+        ['vehicleImages']: []
+      });
+    }
+  }
+
   useEffect(() => {
     fetchBrands();
+    fetchVehicle();
   }, []);
 
   const router = useRouter();
@@ -88,10 +113,9 @@ const AddVehicle = () => {
 
   const handleFormSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    const data = await addVehicle(inputFields);
+    const data = await editVehicle(params.id, inputFields);
     if (data.status) {
       toast.success(data.message);
-      setInputFields(defaultState);
       router.push('/dashboard/vehicle');
     }
     else {
@@ -105,7 +129,7 @@ const AddVehicle = () => {
         <figure className='panel-card'>
           <div className='panel-card-header'>
             <div>
-              <h1 className="panel-card-title">Add Information</h1>
+              <h1 className="panel-card-title">Edit Information</h1>
               <p className="panel-card-description">Please fill the required fields</p>
             </div>
           </div>
@@ -169,7 +193,7 @@ const AddVehicle = () => {
               </div>
 
               <div className='lg:col-span-4 md:col-span-3 sm:col-span-1'>
-                <ImageInput multiple={false} thumbnailPath={imagePlaceholders.thumbnailImageUrl} handleChange={(event) => handleThumbnailInputChange(event)} value={inputFields.thumbnailImage} required={true} name='thumbnailImage' label='Thumbnail Image' />
+                <ImageInput multiple={false} thumbnailPath={imagePlaceholders.thumbnailImageUrl} handleChange={(event) => handleThumbnailInputChange(event)} value={inputFields.thumbnailImage} required={false} name='thumbnailImage' label='Thumbnail Image' />
               </div>
 
               {/* <div className='lg:col-span-4 md:col-span-3 sm:col-span-1'>
@@ -179,11 +203,11 @@ const AddVehicle = () => {
             </div>
           </div>
           <div className="panel-card-footer">
-            <CustomButton text='Add Vehicle' type='submit' theme='primary' />
+            <CustomButton text='Save Changes' type='submit' theme='primary' />
           </div>
         </figure></form>
     </React.Fragment>
   )
 }
 
-export default AddVehicle
+export default EditVehicle

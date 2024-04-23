@@ -25,16 +25,9 @@ router.delete('/brand/:id', Auth.authorizeAdmin, BrandController.handleDeleteBra
 router.get('/vehicle', Auth.authorizeAdmin, VehicleController.handleGetAllVehicle);
 router.get('/vehicle/:id', Auth.authorizeAdmin, VehicleController.handleGetIndividualVehicle);
 router.post('/vehicle', Auth.authorizeAdmin, 
-    upload.fields([
-        {
-            name: 'thumbnailImage',
-            maxCount: 1,
-        },
-        {
-            name: 'vehicleImages',
-            maxCount: 100
-        }
-    ]), VehicleController.handleCreateVehicle);
+    upload.fields([ { name: 'thumbnailImage', maxCount: 1, }, { name: 'vehicleImages', maxCount: 100 } ]), VehicleController.handleCreateVehicle);
+router.put('/vehicle/:id', Auth.authorizeAdmin, 
+    upload.fields([ { name: 'thumbnailImage', maxCount: 1, }, { name: 'vehicleImages', maxCount: 100 } ]), VehicleController.handleUpdateVehicle);
 router.delete('/vehicle/:id', Auth.authorizeAdmin, VehicleController.handleDeleteVehicle);
 
 export default router;

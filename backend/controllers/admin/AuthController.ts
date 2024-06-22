@@ -106,7 +106,7 @@ class AuthController {
                     data: null
                 });   
             }
-
+            
             const verifyPassword = await bcrypt.compare(req.body.password, admin.password);
             if (!verifyPassword) {
                 return res.status(200).send({

@@ -8,6 +8,8 @@ import { BsArrowRightShort } from "react-icons/bs";
 import { FcGoogle } from "react-icons/fc";
 import { UserRegister } from '../../services/authentication';
 import { toast } from 'react-toastify';
+import { useDispatch } from 'react-redux';
+import { AuthUserLogin } from '@/redux/actions/AuthAction';
 
 interface SignupModalProps {
   isOpen: boolean;
@@ -23,6 +25,8 @@ const SignupModal = ({ isOpen, closeModal }: SignupModalProps) => {
     confirmPassword: ''
   });
 
+  const dispatch = useDispatch();
+
   const handleInputChange = (event: any) => {
     const { name, value } = event.target;
     setInpuFields({ ...inputFields, [name]: value });
@@ -32,7 +36,8 @@ const SignupModal = ({ isOpen, closeModal }: SignupModalProps) => {
     event.preventDefault();
     const result = await UserRegister(inputFields);
     if (result.status) {
-      console.log(result.data);
+      handleCloseModal();
+      dispatch(AuthUserLogin(result.data.data.user))
     }
     else {
       toast.error(result.message);

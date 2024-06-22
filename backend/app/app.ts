@@ -7,7 +7,7 @@ import guestRouter from '../routes/guest';
 
 require("dotenv").config();
 
-const port: number = 8000;
+const port: number = parseInt(process.env.APP_PORT as string);
 
 const app = express();
 

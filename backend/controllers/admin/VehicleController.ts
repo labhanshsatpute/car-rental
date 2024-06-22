@@ -6,7 +6,6 @@ import Vehicle from '../../models/Vehicle';
 import { EngineType, FuelType, PriceUnit, TransmissionType, VehicleType } from "../../config/enums";
 import VehicleBrand from "../../models/VehicleBrand";
 import VehicleMedia from "../../models/VehicleMedia";
-import mongoose from "mongoose";
 
 class VehicleController {
 
@@ -46,7 +45,7 @@ class VehicleController {
                         price: 1,
                         priceUnit: 1,
                         location: 1,
-                        thumbnailImageUrl: { $concat: [process.env.APP_URL + "/", "$thumbnailImage"] },
+                        thumbnailImage: 1,
                         "media.path": 1,
                         "media.type": 1,
                         brand: { 
@@ -77,21 +76,27 @@ class VehicleController {
 
             const vehicle = await Vehicle.aggregate([
                 {
-                    $match: {
-                        _id: new mongoose.Types.ObjectId(req.params.id)
-                    }
-                },              
-                {
-                    $addFields: {
-                        thumbnailImageUrl: { $concat: [process.env.APP_URL + "/", "$thumbnailImage"] },
-                    } 
+                    $lookup: {
+                        from: "vehiclemedias",
+                        localField: '_id',
+                        foreignField: 'vehicleId',
+                        as: 'media'
+                    },
                 },
                 {
+                    $lookup: {
+                        from: "vehiclebrands",
+                        localField: 'brandId',
+                        foreignField: '_id',
+                        as: 'brand'
+                    }
+                },                
+                {
                     $project: {
+                        _id: 1,
                         name: 1,
                         summary: 1,
                         type: 1,
-                        brandId: 1,
                         fuelType: 1,
                         engineType: 1,
                         transmissionType: 1,
@@ -101,7 +106,12 @@ class VehicleController {
                         price: 1,
                         priceUnit: 1,
                         location: 1,
-                        thumbnailImageUrl: 1,
+                        thumbnailImage: 1,
+                        "media.path": 1,
+                        "media.type": 1,
+                        brand: { 
+                            $arrayElemAt: ["$brand", 0]
+                        },
                     }
                 }
             ]);
@@ -169,9 +179,9 @@ class VehicleController {
                     longitude: req.body.longitude
                 }
             }).save();
-
-            if (files.vehicleImages) {
-                files.vehicleImages.forEach(async (vehicleMedia) => {
+                
+            if (files['vehicleImages[]']) {
+                files['vehicleImages[]'].forEach(async (vehicleMedia) => {
                     await new VehicleMedia({
                         vehicleId: vehicle._id,
                         type: vehicleMedia.mimetype,
@@ -242,38 +252,38 @@ class VehicleController {
                 });
             }
 
-            // const files = req.files as {[fieldname: string]: Express.Multer.File[]};
+            const files = req.files as {[fieldname: string]: Express.Multer.File[]};
 
-            // if (files.thumbnailImage[0].path) {
-            //     fs.unlink(checkVehicleExists.thumbnailImage, (err) => {
-            //         if (err) {
-            //           console.error(err);
-            //           return;
-            //         }
-            //         console.log('File deleted successfully!');
-            //     });
-            // }
+            if (files.thumbnailImage[0].path) {
+                fs.unlink(checkVehicleExists.thumbnailImage, (err) => {
+                    if (err) {
+                      console.error(err);
+                      return;
+                    }
+                    console.log('File deleted successfully!');
+                });
+            }
 
             const vehicle = await Vehicle.findOneAndUpdate({
                 _id: checkVehicleExists._id
             }, {
                 ...req.body, 
-                // thumbnailImage: files.thumbnailImage[0].path ? files.thumbnailImage[0].path : checkVehicleExists.thumbnailImage ,
+                thumbnailImage: files.thumbnailImage[0].path ? files.thumbnailImage[0].path : checkVehicleExists.thumbnailImage ,
                 location: {
                     latitude: req.body.latitude,
                     longitude: req.body.longitude
                 }
             });
 
-            // if (files.vehicleImages) {
-            //     files.vehicleImages.forEach(async (vehicleMedia) => {
-            //         await new VehicleMedia({
-            //             vehicleId: vehicle._id,
-            //             type: vehicleMedia.mimetype,
-            //             path: vehicleMedia.path
-            //         }).save();
-            //     });
-            // }
+            if (files['vehicleImages[]']) {
+                files['vehicleImages[]'].forEach(async (vehicleMedia) => {
+                    await new VehicleMedia({
+                        vehicleId: req.params.id,
+                        type: vehicleMedia.mimetype,
+                        path: vehicleMedia.path
+                    }).save();
+                });
+            }
 
             return res.status(201).send({
                 status: true,

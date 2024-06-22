@@ -17,7 +17,6 @@ const Catalogue = () => {
 
   const fetchVehicles = async () => {
     const data = await getAllVehicles();
-    console.log(data);
     if (data.status) {
       setVehicles(data.data);
     }

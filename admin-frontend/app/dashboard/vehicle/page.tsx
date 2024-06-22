@@ -4,7 +4,7 @@ import { deleteVehicle, getAllVehicles } from '@/services/vehicle';
 import Link from 'next/link';
 import React, { useEffect, useState } from 'react'
 import DataTable from 'react-data-table-component';
-import { FiEdit, FiTrash } from "react-icons/fi";
+import { FiEdit, FiExternalLink, FiTrash } from "react-icons/fi";
 import { toast } from 'sonner';
 
 const Vehicles = () => {
@@ -40,10 +40,11 @@ const Vehicles = () => {
           name: 'Sr. No.',
           selector: (row: any, index: any) => index + 1,
           sortable: true,
+          with: 10
       },
       {
           name: 'Name',
-          selector: (row: any) => row.name,
+          selector: (row: any) => <Link href={`/dashboard/vehicle/preview/${row._id}`} className='font-medium hover:text-ascent'>{row.name}</Link>,
           sortable: true,
       },
       {

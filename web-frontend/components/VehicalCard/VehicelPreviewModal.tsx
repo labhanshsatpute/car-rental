@@ -2,7 +2,7 @@
 
 import { Dialog, Transition } from '@headlessui/react';
 import Image from 'next/image';
-import React, { Fragment } from 'react'
+import React, { FormEvent, Fragment } from 'react'
 import { LiaTimesCircle } from "react-icons/lia";
 import { GiCartwheel } from "react-icons/gi";
 import { PiSteeringWheelFill } from "react-icons/pi";
@@ -14,6 +14,7 @@ interface VehicelPreviewModalProps {
   isOpen: boolean;
   closeModal: () => void;
   data: {
+    _id: string
     name: string;
     summary: string;
     thumbnailImageUrl: string
@@ -33,6 +34,10 @@ interface VehicelPreviewModalProps {
       logo: string
     }
   }
+}
+
+const handleFromSubmit = (event: FormEvent<HTMLFormElement>) => {
+
 }
 
 const VehicelPreviewModal = ({ isOpen, closeModal, data }: VehicelPreviewModalProps) => {

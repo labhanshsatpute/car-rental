@@ -10,9 +10,11 @@ import { BsArrowRightShort } from "react-icons/bs";
 import { HiUsers, HiOutlineLocationMarker } from "react-icons/hi";
 import { FaStar } from "react-icons/fa";
 import { GiSteeringWheel } from "react-icons/gi";
+import Link from 'next/link';
 
 interface VehicleCardProps {
   data: {
+    _id: string;
     name: string;
     summary: string;
     thumbnailImageUrl: string
@@ -95,7 +97,7 @@ const VehicalCard = ({ data }: VehicleCardProps) => {
               <p className='text-xs font-medium text-gray-500 flex items-center space-x-1'><span>Average Rating 4.5 </span><FaStar size={13} className='-mt-0.5 fill-yellow-400' /></p>
             </div>
             <div className='flex items-center justify-between'>
-              <CustomButton handleClick={() => setModalState(true)} text='Check Details' styles='w-full rounded-lg' textStyles='text-sm' rightIcon={<BsArrowRightShort size={20} strokeWidth={0.5} />} />
+              <CustomButton text='Check Details' styles='w-full rounded-lg' textStyles='text-sm' rightIcon={<BsArrowRightShort size={20} strokeWidth={0.5} />} />
             </div>
           </div>
         </div>

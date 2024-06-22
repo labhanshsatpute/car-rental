@@ -195,7 +195,7 @@ class AuthController {
                 });   
             }
 
-            const user = await new User(req.body).save();
+            const user = await new User({ ...req.body, password: '' }).save();
             const token = user.generateAuthToken(user._id);
 
             const userAgentString = req.headers['user-agent'];

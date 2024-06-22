@@ -79,8 +79,9 @@ const AddVehicle = () => {
 
   const handleMediaInputChange = (event: ChangeEvent<HTMLInputElement>) => {
     if (event.target.files && event.target.files.length > 0) {
-      setInputFields({ ...inputFields, ['vehicleImages']: []  });
-    }
+      const newFiles = Array.from(event.target.files);
+      setInputFields({ ...inputFields, ['vehicleImages']: newFiles as [] });
+    } 
     else {
       setInputFields({ ...inputFields, ['vehicleImages']: [] });
     }
@@ -172,9 +173,9 @@ const AddVehicle = () => {
                 <ImageInput multiple={false} thumbnailPath={imagePlaceholders.thumbnailImageUrl} handleChange={(event) => handleThumbnailInputChange(event)} value={inputFields.thumbnailImage} required={true} name='thumbnailImage' label='Thumbnail Image' />
               </div>
 
-              {/* <div className='lg:col-span-4 md:col-span-3 sm:col-span-1'>
+              <div className='lg:col-span-4 md:col-span-3 sm:col-span-1'>
                 <ImageInput multiple={true} thumbnailPath={imagePlaceholders.thumbnailImageUrl} handleChange={(event) => handleMediaInputChange(event)} value={inputFields.vehicleImages} required={true} name='vehicleImages' label='Other Media Image' />
-              </div> */}
+              </div>
 
             </div>
           </div>

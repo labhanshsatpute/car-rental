@@ -36,10 +36,6 @@ interface VehicelPreviewModalProps {
   }
 }
 
-const handleFromSubmit = (event: FormEvent<HTMLFormElement>) => {
-
-}
-
 const VehicelPreviewModal = ({ isOpen, closeModal, data }: VehicelPreviewModalProps) => {
   return (
     <React.Fragment>

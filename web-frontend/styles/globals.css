@@ -4,7 +4,7 @@
 
 @layer components {
     .container {
-        @apply md:max-w-[64rem] lg:max-w-[90rem] sm:max-w-[36rem] lg:px-20 md:px-10 sm:px-6 self-center;
+        @apply md:max-w-[64rem] lg:max-w-[90rem] sm:max-w-[36rem] lg:px-20 md:px-10 sm:px-4 self-center;
     }  
 }
 

@@ -10,14 +10,14 @@ import { BsArrowRightShort } from "react-icons/bs";
 import { HiUsers, HiOutlineLocationMarker } from "react-icons/hi";
 import { FaStar } from "react-icons/fa";
 import { GiSteeringWheel } from "react-icons/gi";
-import Link from 'next/link';
+import { useRouter } from 'next/navigation'
 
 interface VehicleCardProps {
   data: {
     _id: string;
     name: string;
     summary: string;
-    thumbnailImageUrl: string
+    thumbnailImage: string
     type: string
     fuelType: string
     engineType: string
@@ -40,6 +40,8 @@ const VehicalCard = ({ data }: VehicleCardProps) => {
 
   const [modalState, setModalState] = useState(false);
 
+  const router = useRouter();
+
   return (
     <React.Fragment>
       <figure className='rounded-lg overflow-clip shadow-[0px_0px_25px_rgba(0,0,0,0.2)]'>
@@ -55,7 +57,7 @@ const VehicalCard = ({ data }: VehicleCardProps) => {
               </div>
             </div>
             <div className='flex items-center justify-center w-full h-[200px]'>
-              <img src={data.thumbnailImageUrl} alt="" height={200} width={300}  />
+              <img src={`${process.env.NEXT_PUBLIC_STORAGE_BASE_URL}/${data.thumbnailImage}`} alt="" height={200} width={300}  />
             </div>
           </div>
           <div className='space-y-4 bg-white'>
@@ -97,13 +99,13 @@ const VehicalCard = ({ data }: VehicleCardProps) => {
               <p className='text-xs font-medium text-gray-500 flex items-center space-x-1'><span>Average Rating 4.5 </span><FaStar size={13} className='-mt-0.5 fill-yellow-400' /></p>
             </div>
             <div className='flex items-center justify-between'>
-              <CustomButton text='Check Details' styles='w-full rounded-lg' textStyles='text-sm' rightIcon={<BsArrowRightShort size={20} strokeWidth={0.5} />} />
+              <CustomButton handleClick={() => router.push(`/vehicle/${data._id}`)} text='Check Details' styles='w-full rounded-lg' textStyles='text-sm' rightIcon={<BsArrowRightShort size={20} strokeWidth={0.5} />} />
             </div>
           </div>
         </div>
       </figure>
 
-      <VehicelPreviewModal isOpen={modalState} data={data} closeModal={() => setModalState(false)} />
+      {/* <VehicelPreviewModal isOpen={modalState} data={data} closeModal={() => setModalState(false)} /> */}
 
     </React.Fragment>
 

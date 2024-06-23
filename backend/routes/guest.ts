@@ -7,6 +7,7 @@ const router: Router = express.Router();
 router.get('/brand', BrandController.getAllBrand);
 router.get('/brand/:id', BrandController.getIndividualBrand);
 
-router.get('/vehicle', VehicleController.getAllVehicles);
+router.get('/vehicle', VehicleController.handleGetAllVehicle);
+router.get('/vehicle/:id', VehicleController.handleGetIndividualVehicle);
 
 export default router;

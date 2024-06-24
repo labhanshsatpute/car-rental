@@ -1,6 +1,6 @@
 "use client"
 
-import { CustomButton, CustomInput, CustomSelect, ImageInput } from '@/components'
+import { CustomButton, CustomCheckbox, CustomInput, CustomSelect, ImageInput } from '@/components'
 import { EngineType, FuelType, PriceUnit, TransmissionType, VehicleType } from '@/constants/vehicleConstant';
 import { getBrands } from '@/services/brand';
 import { addVehicle } from '@/services/vehicle';
@@ -27,6 +27,17 @@ const AddVehicle = () => {
     priceUnit: '',
     latitude: '',
     longitude: '',
+    features: {
+      usbCharger: false,
+      bluetooth: false,
+      airFreshner: false,
+      musicSystem: false,
+      fullBootSpace: false,
+      airConditioning: false,
+      powerSteering: false,
+      powerWindows: false,
+      airbags: false
+    },
   };
 
   const [imagePlaceholders, setImagePlaceholders] = useState({
@@ -61,9 +72,16 @@ const AddVehicle = () => {
     setInputFields({ ...inputFields, [name]: value });
   }
 
+  const handleFeaturesChange = (event: ChangeEvent<HTMLInputElement>) => {
+    const { name } = event.target;
+    setInputFields({ ...inputFields, features: {
+      ...inputFields.features, [name]: event.target.checked
+    } });
+  }
+
   const handleSelectChange = (event: ChangeEvent<HTMLSelectElement>) => {
     const { name, value } = event.target;
-    setInputFields({ ...inputFields, [name]: value });
+    setInputFields({ ...inputFields, [name]: !value });
   }
 
   const handleThumbnailInputChange = (event: ChangeEvent<HTMLInputElement>) => {
@@ -163,6 +181,35 @@ const AddVehicle = () => {
               <CustomInput type='text' name='latitude' value={inputFields.latitude} label='Latitude' placeHolder='Enter Latitude' handleChange={(event) => handleInputChange(event)} required={false} />
 
               <CustomInput type='text' name='longitude' value={inputFields.longitude} label='Longitude' placeHolder='Enter Longitude' handleChange={(event) => handleInputChange(event)} required={false} />
+
+              <div className='lg:col-span-4 md:col-span-3 sm:col-span-1'>
+                <br />
+                <h1 className='title'>Features</h1>
+              </div>
+
+              <div className='lg:col-span-4 md:col-span-3 sm:col-span-1'>
+                <div className='grid lg:grid-cols-6 md:grid-cols-4 sm:grid-cols-1 gap-3'>
+
+                  <CustomCheckbox name='usbCharger' isChecked={inputFields.features.usbCharger} label='USB Charger' handleChange={(event) => handleFeaturesChange(event)} required={false} />
+
+                  <CustomCheckbox name='bluetooth' isChecked={inputFields.features.bluetooth} label='Bluetooth' handleChange={(event) => handleFeaturesChange(event)} required={false} />
+
+                  <CustomCheckbox name='airFreshner' isChecked={inputFields.features.airFreshner} label='Air Freshner' handleChange={(event) => handleFeaturesChange(event)} required={false} />
+
+                  <CustomCheckbox name='musicSystem' isChecked={inputFields.features.musicSystem} label='Music System' handleChange={(event) => handleFeaturesChange(event)} required={false} />
+
+                  <CustomCheckbox name='fullBootSpace' isChecked={inputFields.features.fullBootSpace} label='Full Boot Space' handleChange={(event) => handleFeaturesChange(event)} required={false} />
+
+                  <CustomCheckbox name='airConditioning' isChecked={inputFields.features.airConditioning} label='Air Conditioning' handleChange={(event) => handleFeaturesChange(event)} required={false} />
+
+                  <CustomCheckbox name='powerSteering' isChecked={inputFields.features.powerSteering} label='Power Steering' handleChange={(event) => handleFeaturesChange(event)} required={false} />
+
+                  <CustomCheckbox name='powerWindows' isChecked={inputFields.features.powerWindows} label='Power Windows' handleChange={(event) => handleFeaturesChange(event)} required={false} />
+
+                  <CustomCheckbox name='airbags' isChecked={inputFields.features.airbags} label='Air Bags' handleChange={(event) => handleFeaturesChange(event)} required={false} />
+
+                </div>
+              </div>
 
               <div className='lg:col-span-4 md:col-span-3 sm:col-span-1'>
                 <br />

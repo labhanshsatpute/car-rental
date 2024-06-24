@@ -45,6 +45,7 @@ class VehicleController {
                         price: 1,
                         priceUnit: 1,
                         location: 1,
+                        features: 1,
                         thumbnailImage: 1,
                         "media.path": 1,
                         "media.type": 1,
@@ -106,6 +107,7 @@ class VehicleController {
                         price: 1,
                         priceUnit: 1,
                         location: 1,
+                        features: 1,
                         thumbnailImage: 1,
                         "media.path": 1,
                         "media.type": 1,
@@ -241,6 +243,17 @@ class VehicleController {
                 priceUnit: joi.string().required().valid(...Object.values(PriceUnit)).label('Price Unit'),
                 latitude: joi.string().required().min(1).max(250).label('Latitude'),
                 longitude: joi.string().required().min(1).max(250).label('Longitude'),
+                features: joi.object().keys({
+                    usbCharger: joi.boolean(),
+                    bluetooth: joi.boolean(),
+                    airFreshner: joi.boolean(),
+                    musicSystem: joi.boolean(),
+                    fullBootSpace: joi.boolean(),
+                    airConditioning: joi.boolean(),
+                    powerSteering: joi.boolean(),
+                    powerWindows: joi.boolean(),
+                    airbags: joi.boolean()
+                }).required().label('Features'),
             });
 
             const { error } = data.validate(req.body);

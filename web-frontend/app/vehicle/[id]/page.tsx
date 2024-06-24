@@ -43,7 +43,18 @@ interface vehicleInfo {
     name: string;
     slug: string;
     logo: string;  
-  }
+  },
+  features: {
+    usbCharger: boolean,
+    bluetooth: boolean,
+    airFreshner: boolean,
+    musicSystem: boolean,
+    fullBootSpace: boolean,
+    airConditioning: boolean,
+    powerSteering: boolean,
+    powerWindows: boolean,
+    airbags: boolean
+  },
 }
 
 const defaultState: vehicleInfo = {
@@ -71,7 +82,18 @@ const defaultState: vehicleInfo = {
     name: '',
     slug: '',
     logo: ''
-  }
+  },
+  features: {
+    usbCharger: false,
+    bluetooth: false,
+    airFreshner: false,
+    musicSystem: false,
+    fullBootSpace: false,
+    airConditioning: false,
+    powerSteering: false,
+    powerWindows: false,
+    airbags: false
+  },
 };
 
 
@@ -238,50 +260,50 @@ const VehicleInformation = () => {
                     </div>
                     <div className='grid lg:grid-cols-4 md:grid-cols-3 sm:grid-cols-2 gap-4'>
 
-                      <div className='flex items-center gap-1'>
+                      { vehicle.features.usbCharger && <div className='flex items-center gap-1'>
                         <FaUsb size={15} className='fill-ascent' />
                         <span className='text-xs'>USB charger</span>
-                      </div>
+                      </div> }
 
-                      <div className='flex items-center gap-1'>
+                      { vehicle.features.bluetooth && <div className='flex items-center gap-1'>
                         <FaBluetooth size={15} className='fill-ascent' />
                         <span className='text-xs'>Bluetooth</span>
-                      </div>
+                      </div> }
 
-                      <div className='flex items-center gap-1'>
+                      { vehicle.features.airFreshner && <div className='flex items-center gap-1'>
                         <FaAirFreshener size={14} className='fill-ascent' />
                         <span className='text-xs'>Air Freshener</span>
-                      </div>
+                      </div> }
 
-                      <div className='flex items-center gap-1'>
+                      { vehicle.features.musicSystem && <div className='flex items-center gap-1'>
                         <FaMusic size={14} className='fill-ascent' />
                         <span className='text-xs'>Music System</span>
-                      </div>
+                      </div> }
 
-                      <div className='flex items-center gap-1'>
+                      { vehicle.features.fullBootSpace && <div className='flex items-center gap-1'>
                         <FaRegThumbsUp size={14} className='fill-ascent' />
                         <span className='text-xs'>Full boot space</span>
-                      </div>
+                      </div> }
 
-                      <div className='flex items-center gap-1'>
+                      { vehicle.features.airConditioning && <div className='flex items-center gap-1'>
                         <TbAirConditioning size={14} className='stroke-ascent' />
                         <span className='text-xs'>Air Conditioning</span>
-                      </div>
+                      </div> }
 
-                      <div className='flex items-center gap-1'>
+                      { vehicle.features.powerSteering && <div className='flex items-center gap-1'>
                         <TbSteeringWheel size={14} className='stroke-ascent' />
                         <span className='text-xs'>Power steering</span>
-                      </div>
+                      </div> }
 
-                      <div className='flex items-center gap-1'>
+                      { vehicle.features.powerWindows && <div className='flex items-center gap-1'>
                         <GiCarDoor size={14} className='fill-ascent' />
                         <span className='text-xs'>Power Windows</span>
-                      </div>
+                      </div> }
 
-                      <div className='flex items-center gap-1'>
+                      { vehicle.features.airbags && <div className='flex items-center gap-1'>
                         <FaParachuteBox size={14} className='fill-ascent' />
                         <span className='text-xs'>2 Front Airbags</span>
-                      </div>
+                      </div> }
 
                     </div>
                   </div>

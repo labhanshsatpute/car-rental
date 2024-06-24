@@ -81,7 +81,7 @@ const AddVehicle = () => {
 
   const handleSelectChange = (event: ChangeEvent<HTMLSelectElement>) => {
     const { name, value } = event.target;
-    setInputFields({ ...inputFields, [name]: !value });
+    setInputFields({ ...inputFields, [name]: value });
   }
 
   const handleThumbnailInputChange = (event: ChangeEvent<HTMLInputElement>) => {

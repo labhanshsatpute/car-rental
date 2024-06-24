@@ -39,7 +39,7 @@ class AuthController {
             const salt = await bcrypt.genSalt(Number(process.env.SALT));
             const hashPassword = await bcrypt.hash(req.body.password, salt);
 
-            const user = await new User({ ...req.body, password: hashPassword }).save();
+            const user: any = await new User({ ...req.body, password: hashPassword }).save();
             const token = user.generateAuthToken(user._id);
 
             const userAgentString = req.headers['user-agent'];
@@ -87,7 +87,7 @@ class AuthController {
                 });
             }
 
-            const user = await User.findOne({ email: req.body.email });
+            const user: any = await User.findOne({ email: req.body.email });
             if (!user) {
                 return res.status(200).send({
                     status: false,
@@ -146,7 +146,7 @@ class AuthController {
                 });
             }
 
-            const checkUser = await User.findOne({ googleId: req.body.googleId });
+            const checkUser: any = await User.findOne({ googleId: req.body.googleId });
             if (checkUser) {
                 const token = checkUser.generateAuthToken(checkUser._id);
 
@@ -195,7 +195,7 @@ class AuthController {
                 });   
             }
 
-            const user = await new User({ ...req.body, password: '' }).save();
+            const user: any = await new User({ ...req.body, password: '' }).save();
             const token = user.generateAuthToken(user._id);
 
             const userAgentString = req.headers['user-agent'];

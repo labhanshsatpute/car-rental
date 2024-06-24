@@ -121,7 +121,7 @@ class BrandController {
                 });
             }
             
-            const brand = await VehicleBrand.findById(req.params.id);
+            const brand: any = await VehicleBrand.findById(req.params.id);
 
             if (!brand) {
                 return res.status(200).send({
@@ -167,7 +167,7 @@ class BrandController {
     static async handleDeleteBrand(req: Request, res: Response) {
         try {
             
-            const brand = await VehicleBrand.findById(req.params.id);
+            const brand: any = await VehicleBrand.findById(req.params.id);
 
             if (!brand) {
                 return res.status(200).send({

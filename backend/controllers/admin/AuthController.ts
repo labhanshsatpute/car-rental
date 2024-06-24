@@ -50,7 +50,7 @@ class AuthController {
             const salt = await bcrypt.genSalt(Number(process.env.SALT));
             const hashedPassword = await bcrypt.hash(req.body.password, salt);
 
-            const admin = await new Admin({ ...req.body, password: hashedPassword }).save();
+            const admin: any = await new Admin({ ...req.body, password: hashedPassword }).save();
             const token = await admin.generateAuthToken(admin._id);
 
             const userAgentString = req.headers['user-agent'];
@@ -98,7 +98,7 @@ class AuthController {
                 });
             }
 
-            const admin = await Admin.findOne({ email: req.body.email });
+            const admin: any = await Admin.findOne({ email: req.body.email });
             if (!admin) {
                 return res.status(200).send({
                     status: false,
@@ -106,7 +106,7 @@ class AuthController {
                     data: null
                 });   
             }
-            
+
             const verifyPassword = await bcrypt.compare(req.body.password, admin.password);
             if (!verifyPassword) {
                 return res.status(200).send({
@@ -162,7 +162,7 @@ class AuthController {
                 });
             }
 
-            const admin = await Admin.findOne({ email: req.body.email });
+            const admin: any = await Admin.findOne({ email: req.body.email });
             if (!admin) {
                 return res.status(200).send({
                     status: false,

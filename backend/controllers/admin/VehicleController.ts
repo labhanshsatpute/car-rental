@@ -315,7 +315,7 @@ class VehicleController {
     static async handleDeleteVehicle(req: Request, res: Response) {
         try {
             
-            const vehicle = await Vehicle.findById(req.params.id);
+            const vehicle: any = await Vehicle.findById(req.params.id);
 
             if (!vehicle) {
                 return res.status(200).send({

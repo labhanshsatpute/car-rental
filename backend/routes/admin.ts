@@ -27,7 +27,7 @@ router.get('/vehicle/:id', Auth.authorizeAdmin, VehicleController.handleGetIndiv
 router.post('/vehicle', Auth.authorizeAdmin, 
     upload.fields([ { name: 'thumbnailImage', maxCount: 1, }, { name: 'vehicleImages[]', maxCount: 100 } ]), VehicleController.handleCreateVehicle);
 router.put('/vehicle/:id', Auth.authorizeAdmin, 
-    upload.fields([ { name: 'thumbnailImage', maxCount: 1, }, { name: 'vehicleImages', maxCount: 100 } ]), VehicleController.handleUpdateVehicle);
+    upload.fields([ { name: 'thumbnailImage', maxCount: 1, }, { name: 'vehicleImages[]', maxCount: 100 } ]), VehicleController.handleUpdateVehicle);
 router.delete('/vehicle/:id', Auth.authorizeAdmin, VehicleController.handleDeleteVehicle);
 
 export default router;

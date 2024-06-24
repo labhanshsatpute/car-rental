@@ -74,6 +74,35 @@ const vehicleSchema: Schema = new mongoose.Schema({
             type: String
         }
     },
+    features: {
+        usbCharger: {
+            type: Boolean
+        },
+        bluetooth: {
+            type: Boolean
+        },
+        airFreshner: {
+            type: Boolean
+        },
+        musicSystem: {
+            type: Boolean
+        },
+        fullBootSpace: {
+            type: Boolean
+        },
+        airConditioning: {
+            type: Boolean
+        },
+        powerSteering: {
+            type: Boolean
+        },
+        powerWindows: {
+            type: Boolean
+        },
+        airbags: {
+            type: Boolean
+        },
+    },
     deletedAt: {
         type: Date,
         default: null

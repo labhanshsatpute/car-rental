@@ -30,7 +30,7 @@ const EditVehicle = () => {
     latitude: '',
     longitude: '',
   };
-
+  
   const [imagePlaceholders, setImagePlaceholders] = useState({
     thumbnailImageUrl: '/assets/default-thumbnail.png',
     mediaImagesUrl: []
@@ -56,16 +56,19 @@ const EditVehicle = () => {
     const data = await getIndividualVehicle(params.id);
     if (data.status) {
       
-      const { price, location, thumbnailImageUrl } = data.data;
+      const { price, location, thumbnailImage, brand } = data.data;
       delete data.data['_id'];
       delete data.data['location'];
+      delete data.data['media'];
+      delete data.data['brand'];
 
-      setImagePlaceholders({ ...imagePlaceholders, ['thumbnailImageUrl']: thumbnailImageUrl });
+      setImagePlaceholders({ ...imagePlaceholders, ['thumbnailImageUrl']: `${process.env.NEXT_PUBLIC_STORAGE_BASE_URL}/${thumbnailImage}` });
 
       delete data.data['thumbnailImageUrl'];
       
       setInputFields({...data.data, 
         ['price']: price.$numberDecimal,
+        ['brandId']: brand._id,
         ['latitude']: location.latitude,
         ['longitude']: location.latitude,
         ['thumbnailImage']: {},
@@ -104,8 +107,9 @@ const EditVehicle = () => {
 
   const handleMediaInputChange = (event: ChangeEvent<HTMLInputElement>) => {
     if (event.target.files && event.target.files.length > 0) {
-      setInputFields({ ...inputFields, ['vehicleImages']: []  });
-    }
+      const newFiles = Array.from(event.target.files);
+      setInputFields({ ...inputFields, ['vehicleImages']: newFiles as [] });
+    } 
     else {
       setInputFields({ ...inputFields, ['vehicleImages']: [] });
     }
@@ -196,9 +200,9 @@ const EditVehicle = () => {
                 <ImageInput multiple={false} thumbnailPath={imagePlaceholders.thumbnailImageUrl} handleChange={(event) => handleThumbnailInputChange(event)} value={inputFields.thumbnailImage} required={false} name='thumbnailImage' label='Thumbnail Image' />
               </div>
 
-              {/* <div className='lg:col-span-4 md:col-span-3 sm:col-span-1'>
-                <ImageInput multiple={true} thumbnailPath={imagePlaceholders.thumbnailImageUrl} handleChange={(event) => handleMediaInputChange(event)} value={inputFields.vehicleImages} required={true} name='vehicleImages' label='Other Media Image' />
-              </div> */}
+              <div className='lg:col-span-4 md:col-span-3 sm:col-span-1'>
+                <ImageInput multiple={true} thumbnailPath={imagePlaceholders.thumbnailImageUrl} handleChange={(event) => handleMediaInputChange(event)} value={inputFields.vehicleImages} required={false} name='vehicleImages' label='Other Media Image' />
+              </div>
 
             </div>
           </div>

@@ -254,21 +254,20 @@ class VehicleController {
 
             const files = req.files as {[fieldname: string]: Express.Multer.File[]};
 
-            if (files.thumbnailImage[0].path) {
-                fs.unlink(checkVehicleExists.thumbnailImage, (err) => {
-                    if (err) {
-                      console.error(err);
-                      return;
-                    }
-                    console.log('File deleted successfully!');
-                });
-            }
+            // if (files.thumbnailImage[0].path) {
+            //     fs.unlink(checkVehicleExists.thumbnailImage, (err) => {
+            //         if (err) {
+            //           console.error(err);
+            //           return;
+            //         }
+            //         console.log('File deleted successfully!');
+            //     });
+            // }
 
             const vehicle = await Vehicle.findOneAndUpdate({
                 _id: checkVehicleExists._id
             }, {
                 ...req.body, 
-                thumbnailImage: files.thumbnailImage[0].path ? files.thumbnailImage[0].path : checkVehicleExists.thumbnailImage ,
                 location: {
                     latitude: req.body.latitude,
                     longitude: req.body.longitude

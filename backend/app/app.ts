@@ -1,4 +1,4 @@
-import express from "express";
+import express, { Request, Response } from "express";
 import dbConnection from "../config/database";
 import cors from 'cors';
 import userRouter from '../routes/user';
@@ -9,7 +9,7 @@ require("dotenv").config();
 
 const port: number = parseInt(process.env.APP_PORT as string);
 
-const app = express();
+const app: any = express();
 
 dbConnection();
 
@@ -22,7 +22,7 @@ app.use('/api/user', userRouter);
 app.use('/api/admin', adminRouter);
 app.use('/storage', express.static('storage'));
 
-app.get('/', (req, res) => {
+app.get('/', (req: Request, res: Response) => {
     res.send('Hello from server');
 });
 

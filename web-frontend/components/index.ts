@@ -10,6 +10,7 @@ import Footer from "./Common/Footer/Footer";
 import LoginModal from './Authentication/LoginModal';
 import SignupModal from './Authentication/SignupModal';
 import AuthDropdown from './Common/Header/AuthDropdown';
+import Breadcrumbs from './Breadcrumbs/Breadcrumbs';
 
 export {
     Header,
@@ -23,5 +24,6 @@ export {
     Footer,
     LoginModal,
     SignupModal,
-    AuthDropdown
+    AuthDropdown,
+    Breadcrumbs
 }

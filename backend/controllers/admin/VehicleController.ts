@@ -6,6 +6,7 @@ import Vehicle from '../../models/Vehicle';
 import { EngineType, FuelType, PriceUnit, TransmissionType, VehicleType } from "../../config/enums";
 import VehicleBrand from "../../models/VehicleBrand";
 import VehicleMedia from "../../models/VehicleMedia";
+import mongoose from "mongoose";
 
 class VehicleController {
 
@@ -76,6 +77,11 @@ class VehicleController {
         try {
 
             const vehicle = await Vehicle.aggregate([
+                {
+                    $match: {
+                        _id: new mongoose.Types.ObjectId(req.params.id)
+                    }
+                },
                 {
                     $lookup: {
                         from: "vehiclemedias",

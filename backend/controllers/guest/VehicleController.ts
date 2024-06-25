@@ -1,5 +1,6 @@
 import { Request, Response } from 'express';
 import Vehicle from '../../models/Vehicle';
+import mongoose from 'mongoose';
 
 class VehicleController {
 
@@ -71,6 +72,11 @@ class VehicleController {
 
             const vehicle = await Vehicle.aggregate([
                 {
+                    $match: {
+                        _id: new mongoose.Types.ObjectId(req.params.id)
+                    }
+                },
+                {
                     $lookup: {
                         from: "vehiclemedias",
                         localField: '_id',
@@ -109,7 +115,7 @@ class VehicleController {
                             $arrayElemAt: ["$brand", 0]
                         },
                     }
-                }
+                },
             ]);
 
             return res.status(200).send({

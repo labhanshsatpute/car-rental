@@ -17,6 +17,7 @@ import { GiCarDoor } from "react-icons/gi";
 import 'swiper/css';
 import 'swiper/css/pagination';
 import ReviewCard from '@/components/ReviewCard/ReviewCard';
+import { Breadcrumbs } from '@/components';
 
 interface vehicleInfo {
   name: string;
@@ -154,6 +155,18 @@ const VehicleInformation = () => {
   
   return (
     <React.Fragment>
+      <Breadcrumbs crumbs={[
+        {
+          label: "Cars",
+          path: `/vehicles`,
+          active: false
+        },
+        {
+          label: vehicle.name,
+          path: `/vehicle/${params.id}`,
+          active: true
+        }
+      ]} />
       <section>
         <div className='container lg:py-10 sm:py-5'>
           <div className='grid lg:grid-cols-6 md:grid-cols-3 sm:grid-cols-1 gap-7'>

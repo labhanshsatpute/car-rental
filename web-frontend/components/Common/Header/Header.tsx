@@ -37,7 +37,7 @@ const Header = ({ sidebarState, toggleSidebar }: {
 
   return (
     <React.Fragment>
-      <header className='z-50 top-0 fixed w-full bg-white lg:shadow-lg md:shadow-md sm:shadow'>
+      <header className='z-50 top-0 fixed w-full bg-white lg:shadow-md md:shadow-md sm:shadow'>
         <nav className='container md:block sm:hidden py-6'>
           <div className='flex items-center justify-between'>
 

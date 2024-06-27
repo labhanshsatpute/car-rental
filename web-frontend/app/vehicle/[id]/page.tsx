@@ -18,6 +18,7 @@ import 'swiper/css';
 import 'swiper/css/pagination';
 import ReviewCard from '@/components/ReviewCard/ReviewCard';
 import { Breadcrumbs } from '@/components';
+import ReactGoogleAutocomplete from 'react-google-autocomplete';
 
 interface vehicleInfo {
   name: string;
@@ -217,6 +218,22 @@ const VehicleInformation = () => {
                   </div>
                 </div>
                 {/* Vehicle Information (End) */}
+
+                {/*  */}
+                <div className='border rounded-md overflow-clip'>
+                  <div className='lg:p-5 sm:p-3 space-y-5'>
+                  <p className='font-semibold text-sm'>Book Your Trip</p>
+                    <ReactGoogleAutocomplete className='input-box-md'
+                      apiKey={process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY}
+                      onPlaceSelected={(place) => console.log(place)}
+                      options={{
+                        types: ["(regions)"],
+                        componentRestrictions: { country: "in" },
+                      }}
+                    />
+                  </div>
+                </div>
+                
 
                 {/* Reviews (Start) */}
                 <div className='border rounded-md overflow-clip'>

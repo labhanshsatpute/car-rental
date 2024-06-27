@@ -14,7 +14,7 @@ const Breadcrumbs = ({ crumbs }: {
       <div className='bg-gray-50 border-b border-b-gray-100'>
         <div className='container lg:py-5 sm:py-4'>
 
-          <ul className='font-medium opacity-70 lg:text-sm md:text-sm sm:text-xs flex items-center space-x-1'>
+          <ul className='font-medium opacity-70 lg:text-sm md:text-sm sm:text-xs flex items-center space-x-1.5'>
             <li><Link href={"/"}>Home</Link></li>
             {crumbs.map((item, index) => 
               <React.Fragment key={index}>

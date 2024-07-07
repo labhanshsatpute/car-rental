@@ -28,12 +28,34 @@ class UserController extends Controller {
     static async handleGetLoggedInDevices(req: Request, res: Response) {
         try {
 
-            const devices: any = await UserAccessToken.find({ userId: (req as any).user._id }).select({ ipAddress: 1, operatingSystem: 1, createdAt: 1 }).sort({ createdAt: 'desc' });
+            const devices: any = await UserAccessToken.find({ userId: (req as any).user._id }).select({ ipAddress: 1, operatingSystem: 1, createdAt: 1, token: 1 }).sort({ createdAt: 'desc' });
 
             return res.status(200).send({
                 status: true,
                 message: "Logged in devices successfully fetched",
                 data: devices,
+            });
+        
+        } catch (error) {
+            return res.status(500).send({
+                status: false,
+                message: "Internal server error",
+                error: error
+            });
+        }
+    }
+
+    static async handleDeleteLoggedInDevice(req: Request, res: Response) {
+        try {
+
+            const id = req.params.id;
+
+            await UserAccessToken.findOneAndDelete({ _id: id }).deleteOne()
+
+            return res.status(200).send({
+                status: true,
+                message: "Successfully logged out",
+                data: null,
             });
         
         } catch (error) {

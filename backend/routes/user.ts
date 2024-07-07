@@ -16,5 +16,6 @@ router.patch('/', Auth.authorizeUser, UserController.handleUpdateUserInfo);
 router.post('/password/update', Auth.authorizeUser, UserController.handleUpdateUserPassword);
 router.get('/logged-in/devices', Auth.authorizeUser, UserController.handleGetLoggedInDevices);
 router.put('/profile-image', Auth.authorizeUser, upload.single('profileImage'), UserController.handleUpdateProfileImage);
+router.delete('/logout/device/:id', Auth.authorizeUser, UserController.handleDeleteLoggedInDevice);
 
 export default router;

@@ -56,7 +56,7 @@ const Dashboard = () => {
 
               <div className='flex lg:flex-row md:flex-row sm:flex-col lg:items-center md:items-center sm:items-start gap-4'>
                 <div className='h-[90px] w-[90px] rounded-full overflow-clip border'>
-                  <img src="https://innostudio.de/fileuploader/images/default-avatar.png" alt="" className='h-auto w-auto' />
+                  <img src={auth.profileImage ? `${process.env.NEXT_PUBLIC_STORAGE_BASE_URL}/${auth.profileImage}` : 'https://innostudio.de/fileuploader/images/default-avatar.png'} alt="" className='h-auto w-auto' />
                 </div>
                 <div className='space-y-[1px]'>
                   <h1 className='font-medium text-ascent-dark'>Good Evening,</h1>
@@ -67,7 +67,8 @@ const Dashboard = () => {
 
               <div className='grid lg:grid-cols-5 md:grid-cols-3 sm:grid-cols-2 lg:gap-5 md:gap-5 sm:gap-3'>
                 <DashboardCard title='My Bookings' path='/' summary='Manage your bookings & payments' icon={<FaRoute size={20} />} />
-                <DashboardCard title='Settings' path='/' summary='Change your account information' icon={<FaCog size={20} />} />
+                <DashboardCard title='Settings' path='/dashboard/settings' summary='Change your account information' icon={<FaCog size={20} />} />
+                <DashboardCard title='Active Devices' path='/dashboard/devices' summary='Check logged in devices' icon={<FaCog size={20} />} />
                 <DashboardCard title='Help Center' path='/' summary='Contact with our customer care' icon={<FaHeadset size={20} />} />
               </div>
 

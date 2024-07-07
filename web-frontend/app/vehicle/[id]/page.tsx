@@ -233,7 +233,7 @@ const VehicleInformation = () => {
                     />
                   </div>
                 </div>
-                
+
 
                 {/* Reviews (Start) */}
                 <div className='border rounded-md overflow-clip'>

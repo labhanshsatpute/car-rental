@@ -7,6 +7,7 @@ import Link from 'next/link';
 import React, { ChangeEvent, useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
 import { IoCameraOutline } from "react-icons/io5";
+import { toast } from 'react-toastify';
 
 const Settings = () => {
 
@@ -19,7 +20,13 @@ const Settings = () => {
     const data = await updateProfile({
       profileImage: profileImage
     });
-    dispatch(AuthUserLogin(data.data));
+    if (data.status) {
+      toast.success(data.message);
+      dispatch(AuthUserLogin(data.data));
+    }
+    else {
+      toast.error(data.message);
+    }
   }
 
   const handleProfileImageChange = (event: ChangeEvent<HTMLInputElement>) => {
@@ -66,7 +73,11 @@ const Settings = () => {
           }
         ]} />
         <div className='container'>
-          <div className='lg:py-12 md:py-12 sm:py-10'>
+          <div className='lg:py-12 md:py-12 sm:py-10 space-y-10'>
+
+            <div>
+              <h1 className='text-4xl font-semibold'>Account Settings</h1>
+            </div>
 
 
             <div className='grid lg:col-span-3'>

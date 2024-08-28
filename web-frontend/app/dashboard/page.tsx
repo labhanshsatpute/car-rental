@@ -55,7 +55,7 @@ const Dashboard = () => {
             <div className='lg:space-y-8 md:space-y-8 sm:space-y-5'>
 
               <div className='flex lg:flex-row md:flex-row sm:flex-col lg:items-center md:items-center sm:items-start gap-4'>
-                <div className='h-[90px] w-[90px] rounded-full overflow-clip border'>
+              <div className='h-[100px] w-[100px] rounded-full overflow-clip relative group ring-4 ring-ascent-dark'>
                   <img src={auth.profileImage ? `${process.env.NEXT_PUBLIC_STORAGE_BASE_URL}/${auth.profileImage}` : 'https://innostudio.de/fileuploader/images/default-avatar.png'} alt="" className='h-auto w-auto' />
                 </div>
                 <div className='space-y-[1px]'>
